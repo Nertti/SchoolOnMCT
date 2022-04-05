@@ -1,5 +1,6 @@
 <?php
 include '../../path.php';
+include SITE_ROOT . '/app/include/redirectAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,7 @@ include '../../path.php';
                                 <span class="balance"><?= $student['balance']; ?> BYN</span>
                                 <span class="control">
                                 <a class="edit" href="edit.php?table=students&id_edit=<?= $student['id_student']; ?>">Изменить</a>
-                                <a class="delete" href="?table=students&del_id=<?= $student['id_student']; ?>">Удалить</a>
+                                <a class="delete" onClick="return window.confirm('Удалить учащегося?');" href="?table=students&del_id=<?= $student['id_student']; ?>">Удалить</a>
                             </span>
                             </div>
                         <?php endforeach; ?>

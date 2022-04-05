@@ -1,5 +1,7 @@
 <?php
 include '../path.php';
+include SITE_ROOT . '/app/include/redirectUser.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

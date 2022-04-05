@@ -1,4 +1,3 @@
-<?php include SITE_ROOT . '/app/controllers/control.php';?>
 <header>
     <div class="nav lock-padding">
         <div class="container">
@@ -37,28 +36,27 @@
 <div id="popup_log" class="popup">
     <div class="popup_body">
         <div class="popup_content" style="background-image: url('img/back_log.webp')">
-            <span class="error_msg"><?=$error?></span>
+            <span class="error_msg"></span>
             <a href="#" class="popup_close"></a>
             <div class="log">
                 <div class="block">
                     <div class="form">
-                        <form method="post" action="">
+                        <form>
                             <label>
                                 Логин:
-                                <input value="<?= $login ?>" type="text" name="login">
+                                <input type="text" name="login">
                             </label>
                             <br>
                             <label>
                                 Пароль:
-                                <input type="password" name="pass">
+                                <input type="password" name="password">
                             </label>
-                            <button type="submit" class="button" name="btn-sign" >
+                            <button type="submit" class="button login-btn" id="btn">
                                 Войти
-<!--                                onclick="drawShelves(); return false;-->
                             </button>
-                            <div class="register">
-                                <a class="popup-link" href="#popup_reg">Зарегистрироваться</a>
-                            </div>
+<!--                            <div class="register">-->
+<!--                                <a class="popup-link" href="#popup_reg">Зарегистрироваться</a>-->
+<!--                            </div>-->
                         </form>
                     </div>
                 </div>

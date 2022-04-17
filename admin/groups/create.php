@@ -21,13 +21,13 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
 
                 <div class="create-for-admin">
                     <label>
-                        Номер:
-                        <input value="<?= $number ?>" type="text" name="number">
+                        <span>Номер:</span>
+                        <input value="<?= $number ?>" type="text" name="number" required>
                     </label>
                     <div class="select">
                         <label>
-                            Курс:
-                            <select name="id_course">
+                            <span>Курс:</span>
+                            <select name="id_course" required>
                                 <option value="" selected>'Выбрать'</option>
                                 <?php foreach ($courses as $key => $course): ?>
                                     <option value="<?= $course['id_course']; ?>"><?= $course['name']; ?></option>
@@ -35,8 +35,8 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                             </select>
                         </label>
                         <label>
-                            Преподаватель:
-                            <select name="id_teacher">
+                            <span>Преподаватель:</span>
+                            <select name="id_teacher" required>
                                 <option value="" selected>'Выбрать'</option>
                                 <?php foreach ($teachers as $key => $teacher): ?>
                                     <option value="<?= $teacher['id_teacher']; ?>"><?= $teacher['surname']; ?></option>

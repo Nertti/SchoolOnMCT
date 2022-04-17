@@ -21,12 +21,12 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
 
                 <div class="create-for-admin">
                     <label>
-                        Название:
-                        <input value="<?= $name ?>" type="text" name="name">
+                        <span>Название:</span>
+                        <input value="<?= $name ?>" type="text" name="name" required>
                     </label>
                     <label>
-                        Стоимость:
-                        <input value="<?= $price ?>" type="number" min="0" max="999" name="price">
+                        <span>Стоимость:</span>
+                        <input value="<?= $price ?>" type="number" min="0" max="999" name="price" required>
                     </label>
                 </div>
                 <div class="create-btn">

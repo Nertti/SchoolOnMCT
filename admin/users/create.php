@@ -20,24 +20,24 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 <div class="error_create"><?= $error ?></div>
                 <div class="create-for-admin">
                     <label>
-                        Фамилия*:
-                        <input value="<?= $surname ?>" type="text" name="surname">
+                        <span>Фамилия:</span>
+                        <input value="<?= $surname ?>" type="text" name="surname" required>
                     </label>
                     <label>
-                        Имя*:
-                        <input value="<?= $name ?>" type="text" name="name">
+                        <span>Имя:</span>
+                        <input value="<?= $name ?>" type="text" name="name" required>
                     </label>
                     <label>
                         Отчество:
                         <input value="<?= $last_name ?>" type="text" name="last_name">
                     </label>
                     <label>
-                        Логин*:
-                        <input value="<?= $login ?>" type="text" name="login">
+                        <span>Логин:</span>
+                        <input value="<?= $login ?>" type="text" name="login" required>
                     </label>
                     <label>
-                        Пароль*:
-                        <input type="password" name="pass">
+                        <span>Пароль:</span>
+                        <input type="password" name="pass" required>
                     </label>
                 </div>
                 <div class="create-btn">

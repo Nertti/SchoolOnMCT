@@ -1,4 +1,5 @@
 <?php
+$preg_phone = "/^\+375(25|29|33|44)[0-9]{7}$/";
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
     $table = trim($_POST['btn-add']);
     if ($table === 'students') {
@@ -8,7 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $login = trim($_POST['login']);
         $pass = trim($_POST['pass']);
         if ($name === '' || $surname === '' || $login === '' || $pass === '') {
-            $error = 'Одно из полей пустое. Обязательно заполните все поля со звёздочкой';
+            $error = 'Одно из полей пустое. Обязательно заполните все поля';
+        } elseif (iconv_strlen($name) > 30) {
+            $error = 'Слишком длинное имя!';
+        } elseif (iconv_strlen($surname) > 50) {
+            $error = 'Слишком длинная фамилия!';
+        } elseif (iconv_strlen($last_name) > 50) {
+            $error = 'Слишком длинное отчество!';
+        } elseif (iconv_strlen($login) < 3 || iconv_strlen($login) > 15) {
+            $error = 'Длина логина может быть от 3 до 15 символов!';
+        } elseif (iconv_strlen($pass) < 6 || iconv_strlen($pass) > 20) {
+            $error = 'Длина пароля должна быть от 6 до 20 символов!';
         } else {
             $check_login = selectOne($table, ['login' => $login]);
             if ($check_login['login'] === $login) {
@@ -33,9 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $last_name = trim($_POST['last_name']);
         $login = trim($_POST['login']);
         $pass = trim($_POST['pass']);
-        $phone = trim($_POST['phone']);
+        $phone = str_replace([' ', '(', ')','-',], '', trim($_POST['phone']));
         if ($name === '' || $surname === '' || $login === '' || $pass === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля со звёздочкой';
+        } elseif (iconv_strlen($name) > 30) {
+            $error = 'Слишком длинное имя!';
+        } elseif (iconv_strlen($surname) > 50) {
+            $error = 'Слишком длинная фамилия!';
+        } elseif (iconv_strlen($last_name) > 50) {
+            $error = 'Слишком длинное отчество!';
+        } elseif (iconv_strlen($login) < 3 || iconv_strlen($login) > 15) {
+            $error = 'Длина логина может быть от 3 до 15 символов!';
+        } elseif (iconv_strlen($pass) < 6 || iconv_strlen($pass) > 20) {
+            $error = 'Длина пароля должна быть от 6 до 20 символов!';
+        } elseif (!preg_match($preg_phone, $phone) && !$phone == '') {
+            $error = 'Введите верный телефон';
         } else {
             $check_login = selectOne($table, ['login' => $login]);
             if ($check_login['login'] === $login) {
@@ -60,6 +83,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $price = trim($_POST['price']);
         if ($name === '' || $price === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля';
+        } elseif (iconv_strlen($name) > 30) {
+            $error = 'Слишком длинное имя!';
+        } elseif (iconv_strlen($price) > 3) {
+            $error = 'Слишком большая цена';
         } else {
             $check_name = selectOne($table, ['name' => $name]);
             if ($check_name['name'] === $name) {
@@ -80,6 +107,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $teacher = trim($_POST['id_teacher']);
         if ($number === '' || $course === '' || $teacher === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
+        } elseif (iconv_strlen($number) > 5) {
+            $error = 'Слишком длинный номер группы!';
         } else {
             $check_number = selectOne($table, ['number' => $number]);
             if ($check_number['number'] === $number) {
@@ -101,15 +130,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $today = date("Y-n-j");
         if ($number === '' || $summary === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
-        }elseif (iconv_strlen($summary) > 3){
+        } elseif (iconv_strlen($summary) > 3) {
             $error = 'Слишком большая сумма';
-        } elseif (iconv_strlen($number) > 15){
+        } elseif (iconv_strlen($number) > 15) {
             $error = 'Слишком длинный номер документа';
         } else {
             $check_number = selectOne('pay', ['number_doc' => $number]);
             if ($check_number['number_doc'] === $number) {
-                $error = 'Такой номер уже существует';
-//                tt($_GET);
+                $error = 'Такой документ уже существует';
             } else {
                 $post = [
                     'id_student' => $_GET['id_student_pay'],

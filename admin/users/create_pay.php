@@ -16,19 +16,19 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
     <main class="main">
         <div class="container">
             <form class="admin_pages_create" action="" method="post">
-                <div class="title">Оплата <?php echo $student['surname'] . ' ';
+                <div class="title">Оплата учащегося(йся) <?php echo $student['surname'] . ' ';
                     echo mb_substr($student['name'], 0, 1) . '.';
                     echo mb_substr($student['last_name'], 0, 1) . '.'; ?></div>
                 <div class="error_create"><?= $error ?></div>
 
                 <div class="create-for-admin">
                     <label>
-                        Номер документа:
-                        <input value="<?= $number ?>" type="text" name="number">
+                        <span>Номер документа:</span>
+                        <input value="<?= $number ?>" type="text" name="number" required>
                     </label>
                     <label>
-                        Сумма:
-                        <input value="<?= $summary ?>" type="number" min="0" name="summary">
+                        <span>Сумма:</span>
+                        <input value="<?= $summary ?>" type="number" min="0" name="summary" required>
                     </label>
                 </div>
                 <div class="create-btn">

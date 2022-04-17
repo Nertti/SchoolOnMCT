@@ -23,3 +23,10 @@ input:in-range{
 input:out-of-range{
     border-bottom: 1px solid #c75454;
 }
+.create-for-admin span::after{
+    content: '*';
+    color: #c75454;
+}
+select{
+    font-family: "Montserrat", sans-serif;
+}

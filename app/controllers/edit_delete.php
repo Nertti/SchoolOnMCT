@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
         $id = 'id_course = ' . $_GET['del_id'];
     }elseif ($table === 'groups'){
         $id = 'id_group = ' . $_GET['del_id'];
+    }elseif ($table === 'lessons'){
+        $id = 'id_lesson = ' . $_GET['del_id'];
     }
     deleteRow($table, $id);
     header('location: ' . 'index.php');

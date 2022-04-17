@@ -16,7 +16,9 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
     <main class="main">
 
         <div class="block_spravka">
-
+            <div class="admin_menu">
+                <a href="javascript:history.go(-1)">Назад</a>
+            </div>
             <div class="title">Справка</div>
             <div class="title_block_spravk">О приложении</div>
             <div class="flex_information">

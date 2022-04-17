@@ -32,6 +32,7 @@ function userAuth($user)
         ];
     }
     echo json_encode($response);
+    die();
 }
 
 $login = trim($_POST['login']);

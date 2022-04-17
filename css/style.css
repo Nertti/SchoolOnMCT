@@ -992,6 +992,20 @@ footer span {
   margin: 10px auto 0;
 }
 
+.admin_menu {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.admin_menu * {
+  margin: 0 0 0 20px;
+}
+
 .admin {
   margin: 20px 0;
   display: -webkit-box;
@@ -1231,7 +1245,7 @@ footer span {
 }
 
 .admin_pages .admin_table .count {
-  width: 200px;
+  width: 220px;
   text-align: center;
 }
 
@@ -1382,6 +1396,74 @@ footer span {
 
 .admin_pages_create .control_buts button.reset {
   background-color: #999;
+}
+
+.block_spravka {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.block_spravka .title {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.block_spravka .title_block_spravk {
+  border-bottom: 1px solid #4c4c4c;
+  margin: 20px 0;
+  font-size: 22px;
+}
+
+.block_spravka .spravk {
+  text-align: justify;
+}
+
+.info_page {
+  padding: 30px 0;
+}
+
+.info_page .zagl {
+  height: 30px;
+  border: 1px solid black;
+}
+
+.info_page .name {
+  text-align: center;
+  font-weight: 500;
+  margin: 40px 0 25px;
+  font-size: 30px;
+}
+
+.info_page .info_student {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.info_page .info_student div {
+  font-size: 25px;
+  margin: 0 0 10px;
+}
+
+.info_page .info_student .groups {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.info_page .info_student .groups .tag_group {
+  margin-right: 5px;
+}
+
+.info_page .info_student .groups .number_group {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.info_page .edit_line_student {
+  text-align: center;
 }
 
 @media screen and (max-width: 1220px) {

@@ -1,0 +1,10 @@
+.teacher_group{
+    font-size: 25px;
+    font-weight: 500;
+}
+.admin_table{
+    margin: 0 auto;
+}
+.admin_pages .admin_table .head_table{
+    padding-right: 10px;
+}

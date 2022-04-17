@@ -47,7 +47,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                     echo mb_substr($student['last_name'], 0, 1) . '.'; ?></span>
                                 <span class="balance"><?= $student['balance']; ?> BYN</span>
                                 <span class="control">
-                                <a class="edit" href="edit.php?table=students&id_edit=<?= $student['id_student']; ?>">Изменить</a>
+                                <a class="edit" href="student.php?table=students&id_edit=<?= $student['id_student']; ?>">Информация</a>
                                 <a class="delete" onClick="return window.confirm('Удалить учащегося?');" href="?table=students&del_id=<?= $student['id_student']; ?>">Удалить</a>
                             </span>
                             </div>

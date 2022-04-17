@@ -43,10 +43,10 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <?php foreach ($groups as $key => $group): ?>
                             <div class="row_table">
                                 <span class="number"><?= $key + 1; ?></span>
-                                <a href="info_group.php?id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>" class="price"><?= $group['number']?></a>
+                                <span class="price"><?= $group['number']?></span>
                                 <span class="count"><?= $group['count_students']; ?></span>
                                 <span class="control">
-                                <a class="edit" href="#">Изменить</a>
+                                <a class="edit" href="info_group.php?id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>">Информация</a>
                                 <a class="delete" href="?table=groups&del_id=<?= $group['id_group']; ?>">Удалить</a>
                             </span>
                             </div>

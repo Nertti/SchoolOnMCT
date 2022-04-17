@@ -52,3 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         header('location: ' . 'index.php');
     }
 }
+
+if (isset($_GET['id_student_pay'])) {
+    $id = $_GET['id_student_pay'];
+    $student = selectOne('students', ['id_student' => $id]);
+}

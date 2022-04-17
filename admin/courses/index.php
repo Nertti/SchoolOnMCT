@@ -47,7 +47,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                 <span class="balance"><?= $course['price']; ?> BYN</span>
                                 <span class="control">
                                 <a class="edit" href="#">Изменить</a>
-                                <a class="delete" href="?table=courses&del_id=<?= $course['id_course']; ?>">Удалить</a>
+                                <a class="delete" onClick="return window.confirm('Удалить курс?');" href="?table=courses&del_id=<?= $course['id_course']; ?>">Удалить</a>
                             </span>
                             </div>
                         <?php endforeach; ?>

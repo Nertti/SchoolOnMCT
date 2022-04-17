@@ -7,11 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $last_name = trim($_POST['last_name']);
         $login = trim($_POST['login']);
         $pass = trim($_POST['pass']);
-        if ($name === '' || $surname === '' || $last_name === '' || $login === '' || $pass === '') {
-            $error = 'Одно из полей пустое. Обязательно заполните поля';
+        if ($name === '' || $surname === '' || $login === '' || $pass === '') {
+            $error = 'Одно из полей пустое. Обязательно заполните все поля со звёздочкой';
         } else {
             $check_login = selectOne($table, ['login' => $login]);
-            if ($check_login === $login) {
+            if ($check_login['login'] === $login) {
                 $error = 'Такой пользователь уже существует';
             } else {
                 $pass = password_hash($pass, PASSWORD_DEFAULT);
@@ -34,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $login = trim($_POST['login']);
         $pass = trim($_POST['pass']);
         $phone = trim($_POST['phone']);
-        if ($name === '' || $surname === '' || $last_name === '' || $login === '' || $pass === '' || $phone === '') {
-            $error = 'Одно из полей пустое. Обязательно заполните поля';
+        if ($name === '' || $surname === '' || $login === '' || $pass === '') {
+            $error = 'Одно из полей пустое. Обязательно заполните все поля со звёздочкой';
         } else {
             $check_login = selectOne($table, ['login' => $login]);
-            if ($check_login === $login) {
+            if ($check_login['login'] === $login) {
                 $error = 'Такой пользователь уже существует';
             } else {
                 $pass = password_hash($pass, PASSWORD_DEFAULT);
@@ -59,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $name = trim($_POST['name']);
         $price = trim($_POST['price']);
         if ($name === '' || $price === '') {
-            $error = 'Одно из полей пустое. Обязательно заполните поля';
+            $error = 'Одно из полей пустое. Обязательно заполните все поля';
         } else {
             $check_name = selectOne($table, ['name' => $name]);
-            if ($check_name === $name) {
+            if ($check_name['name'] === $name) {
                 $error = 'Такое название уже существует';
             } else {
                 $post = [
@@ -82,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } else {
             $check_number = selectOne($table, ['number' => $number]);
-            if ($check_number === $number) {
-                $error = 'Такое название уже существует';
+            if ($check_number['number'] === $number) {
+                $error = 'Такая группа уже существует';
             } else {
                 $post = [
                     'number' => $number,
@@ -101,13 +101,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $today = date("Y-n-j");
         if ($number === '' || $summary === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
+        }elseif (iconv_strlen($summary) > 3){
+            $error = 'Слишком большая сумма';
+        } elseif (iconv_strlen($number) > 15){
+            $error = 'Слишком длинный номер документа';
         } else {
             $check_number = selectOne('pay', ['number_doc' => $number]);
-            if ($check_number === $number) {
+            if ($check_number['number_doc'] === $number) {
                 $error = 'Такой номер уже существует';
+//                tt($_GET);
             } else {
                 $post = [
-                    'id_student' => $_GET['id_student'],
+                    'id_student' => $_GET['id_student_pay'],
                     'number_doc' => $number,
                     'summary' => $summary,
                     'date' => $today,

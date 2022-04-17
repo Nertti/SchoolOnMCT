@@ -49,7 +49,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     </div>
                 </div>
                 <div class="edit_line_student">
-                    <a href="create_pay.php?id_student=<?= $student['id_student'] ?>">Внести оплату</a>
+                    <a href="create_pay.php?id_student_pay=<?= $student['id_student'] ?>">Внести оплату</a>
                 </div>
 
             </div>

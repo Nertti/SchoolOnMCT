@@ -8,3 +8,18 @@
 .admin_pages .admin_table .head_table{
     padding-right: 10px;
 }
+
+.error_create{
+    height: 30px;
+    text-align: center;
+    color: #c75454;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+input:in-range{
+    border-bottom: 1px solid #339967;
+}
+input:out-of-range{
+    border-bottom: 1px solid #c75454;
+}

@@ -17,37 +17,39 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container">
             <form class="admin_pages_create" action="" method="post">
                 <div class="title">Добавление группы</div>
-                <div class="create_block_student">
-                    <div class="fio">
+                <div class="error_create"><?= $error ?></div>
+
+                <div class="create-for-admin">
+                    <label>
+                        Номер:
+                        <input value="<?= $number ?>" type="text" name="number">
+                    </label>
+                    <div class="select">
                         <label>
-                            Номер:
-                            <input type="text" name="number">
-                        </label>
-                    </div>
-                    <div class="login">
-                        <label> Курс:
+                            Курс:
                             <select name="id_course">
                                 <option value="" selected>'Выбрать'</option>
                                 <?php foreach ($courses as $key => $course): ?>
-                                    <option value="<?=$course['id_course'];?>"><?=$course['name'];?></option>
+                                    <option value="<?= $course['id_course']; ?>"><?= $course['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </label>
-                        <label> Преподаватели:
+                        <label>
+                            Преподаватель:
                             <select name="id_teacher">
                                 <option value="" selected>'Выбрать'</option>
                                 <?php foreach ($teachers as $key => $teacher): ?>
-                                    <option value="<?=$teacher['id_teacher'];?>"><?=$teacher['surname'];?></option>
+                                    <option value="<?= $teacher['id_teacher']; ?>"><?= $teacher['surname']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </label>
                     </div>
                 </div>
-                <div class="control_buts">
-                    <button name="btn-add" value="groups" class="button" type="submit">Добавить</button>
-                    <button class="button reset" type="reset">Очистить</button>
-                    <button name="btn-back" class="button reset" type="submit">Отмена</button>
+                <div class="create-btn">
+                    <button type="submit" name="btn-add" value="groups">Добавить</button>
+                    <a href="javascript:history.go(-1)">Назад</a>
                 </div>
+
             </form>
         </div>
     </main>

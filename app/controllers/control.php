@@ -4,6 +4,8 @@ $name = '';
 $surname = '';
 $last_name = '';
 $login = '';
+$phone = '';
+$number = '';
 $find_sql = '';
 $check_login = '';
 

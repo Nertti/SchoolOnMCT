@@ -16,25 +16,24 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
     <main class="main">
         <div class="container">
             <form class="admin_pages_create" action="" method="post">
-                <div class="title">Оплата учащегося</div>
-                <div class="create_block_student">
-                    <div class="fio">
-                        <label>
-                            Номер документа:
-                            <input type="text" name="number">
-                        </label>
-                    </div>
-                    <div class="login">
-                        <label>
-                            Сумма:
-                            <input type="number" name="summary">
-                        </label>
-                    </div>
+                <div class="title">Оплата <?php echo $student['surname'] . ' ';
+                    echo mb_substr($student['name'], 0, 1) . '.';
+                    echo mb_substr($student['last_name'], 0, 1) . '.'; ?></div>
+                <div class="error_create"><?= $error ?></div>
+
+                <div class="create-for-admin">
+                    <label>
+                        Номер документа:
+                        <input value="<?= $number ?>" type="text" name="number">
+                    </label>
+                    <label>
+                        Сумма:
+                        <input value="<?= $summary ?>" type="number" min="0" name="summary">
+                    </label>
                 </div>
-                <div class="control_buts">
-                    <button name="btn-add" value="pay" class="button" type="submit">Добавить</button>
-                    <button class="button reset" type="reset">Очистить</button>
-                    <button name="btn-back" class="button reset" type="submit">Отмена</button>
+                <div class="create-btn">
+                    <button type="submit" name="btn-add" value="pay">Зачислить</button>
+                    <a href="javascript:history.go(-1)">Назад</a>
                 </div>
             </form>
         </div>

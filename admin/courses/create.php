@@ -17,24 +17,22 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container">
             <form class="admin_pages_create" action="" method="post">
                 <div class="title">Добавление курса</div>
-                <div class="create_block_student">
-                    <div class="fio">
-                        <label>
-                            Название:
-                            <input type="text" name="name">
-                        </label>
-                    </div>
-                    <div class="login">
-                        <label>
-                            Стоимость:
-                            <input type="text" name="price">
-                        </label>
-                    </div>
+                <div class="error_create"><?= $error ?></div>
+
+                <div class="create-for-admin">
+                    <label>
+                        Название:
+                        <input value="<?= $name ?>" type="text" name="name">
+                    </label>
+                    <label>
+                        Стоимость:
+                        <input value="<?= $price ?>" type="number" min="0" max="999" name="price">
+                    </label>
                 </div>
-                <div class="control_buts">
-                    <button name="btn-add" value="courses" class="button" type="submit">Добавить</button>
-                    <button class="button reset" type="reset">Очистить</button>
-                    <button name="btn-back" class="button reset" type="submit">Отмена</button>
+                <div class="create-btn">
+                    <button type="submit" name="btn-add" value="courses">Добавить</button>
+                    <a href="javascript:history.go(-1)">Назад</a>
+
                 </div>
             </form>
         </div>

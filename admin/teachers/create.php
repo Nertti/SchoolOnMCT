@@ -17,40 +17,38 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container">
             <form class="admin_pages_create" action="" method="post">
                 <div class="title">Добавление преподавателя</div>
-                <div class="create_block_student">
-                    <div class="fio">
-                        <label>
-                            Имя:
-                            <input type="text" name="name">
-                        </label>
-                        <label>
-                            Фамилия:
-                            <input type="text" name="surname">
-                        </label>
-                        <label>
-                            Отчество:
-                            <input type="text" name="last_name">
-                        </label>
-                    </div>
-                    <div class="login">
-                        <label>
-                            Телефон:
-                            <input type="text" name="phone">
-                        </label>
-                        <label>
-                            Логин:
-                            <input type="text" name="login">
-                        </label>
-                        <label>
-                            Пароль:
-                            <input type="password" name="pass">
-                        </label>
-                    </div>
+                <div class="error_create"><?= $error ?></div>
+
+                <div class="create-for-admin">
+                    <label>
+                        Фамилия:
+                        <input value="<?= $surname ?>" type="text" name="surname">
+                    </label>
+                    <label>
+                        Имя:
+                        <input value="<?= $name ?>" type="text" name="name">
+                    </label>
+                    <label>
+                        Отчество:
+                        <input value="<?= $last_name ?>" type="text" name="last_name">
+                    </label>
+                    <label>
+                        Телефон:
+                        <input value="<?= $phone ?>" type="text" name="phone">
+                    </label>
+                    <label>
+                        Логин:
+                        <input value="<?= $login ?>" type="text" name="login">
+                    </label>
+                    <label>
+                        Пароль:
+                        <input type="password" name="pass">
+                    </label>
                 </div>
-                <div class="control_buts">
-                    <button name="btn-add" value="teachers" class="button" type="submit">Добавить</button>
-                    <button class="button reset" type="reset">Очистить</button>
-                    <button name="btn-back" class="button reset" type="submit">Отмена</button>
+                <div class="create-btn">
+                    <button type="submit" name="btn-add" value="teachers">Добавить</button>
+                    <a href="javascript:history.go(-1)">Назад</a>
+
                 </div>
             </form>
         </div>

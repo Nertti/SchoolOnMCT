@@ -45,10 +45,9 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                 <span class="surname"><?php echo $teacher['surname'] . ' ';
                                     echo mb_substr($teacher['name'], 0, 1) . '.';
                                     echo mb_substr($teacher['last_name'], 0, 1) . '.'; ?></span>
-<!--                                <span class="balance">--><?//= $student['balance']; ?><!-- BYN</span>-->
                                 <span class="control">
-                                <a class="edit" href="#">Изменить</a>
-                                <a class="delete" href="?table=teachers&del_id=<?= $teacher['id_teacher']; ?>">Удалить</a>
+                                <a class="edit" href="#">Информация</a>
+                                <a class="delete" onClick="return window.confirm('Удалить преподавателя?');" href="?table=teachers&del_id=<?= $teacher['id_teacher']; ?>">Удалить</a>
                             </span>
                             </div>
                         <?php endforeach; ?>

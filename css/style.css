@@ -1360,6 +1360,7 @@ footer span {
   margin: 10px 0;
   border-bottom: 1px solid #4c4c4c;
   padding: 5px;
+  font-family: "Montserrat", sans-serif;
 }
 
 .admin_pages_create .create-btn {
@@ -1445,6 +1446,59 @@ footer span {
 
 .info_page .edit_line_student {
   text-align: end;
+}
+
+.info_page .info_teacher {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.info_page .info_teacher .title_desc {
+  border-bottom: 1px solid #4c4c4c;
+}
+
+.info_page .info_teacher .down {
+  max-width: calc(100% - 400px);
+  width: 100%;
+}
+
+.info_page .info_teacher .up {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.info_page .info_teacher .img {
+  width: 300px;
+  height: 400px;
+  background: #4c4c4c;
+}
+
+.info_page .info_teacher .group_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.info_page .info_teacher * {
+  margin: 5px 0;
+  font-size: 24px;
 }
 
 @media screen and (max-width: 1220px) {

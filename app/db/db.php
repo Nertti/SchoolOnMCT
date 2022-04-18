@@ -155,18 +155,10 @@ function insertRow($table, $params)
     foreach ($params as $key => $value) {
         if ($i === 0) {
             $coll = $coll . "$key";
-            if (!is_numeric($value)) {
-                $mask = $mask . " '" . "$value" . "'";
-            } else {
-                $mask = $mask . "$value";
-            }
+            $mask = $mask . " '" . "$value" . "'";
         } else {
             $coll = $coll . ", $key";
-            if (!is_numeric($value)) {
-                $mask = $mask . "," . " '" . "$value" . "'";
-            } else {
-                $mask = $mask . ", $value";
-            }
+            $mask = $mask . "," . " '" . "$value" . "'";
         }
         $i++;
     }

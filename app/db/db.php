@@ -117,21 +117,6 @@ function selectFind($table, $find_sql, $column, $params = [])
     $sql = "select * from `$table`";
 
     if (!empty($params)) {
-        $i = 0;
-        foreach ($params as $key => $value) {
-
-            if (!is_numeric($value)) {
-                $value = "'" . $value . "'";
-            }
-            if ($i === 0) {
-                $sql = $sql . " WHERE $key = $value";
-            } else {
-                $sql = $sql . " AND $key = $value";
-            }
-            $i++;
-        }
-    }
-    if (!empty($params)) {
         $sql = $sql . " AND $column LIKE '%" . $find_sql . "%'";
     } else {
         $sql = $sql . " WHERE $column LIKE '%" . $find_sql . "%'";

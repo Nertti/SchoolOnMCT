@@ -30,3 +30,26 @@ input:out-of-range{
 select{
     font-family: "Montserrat", sans-serif;
 }
+
+.create-for-admin .label_line{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #4c4c4c;
+    margin: 0 0 10px;
+    padding: 0 0 5px;
+}
+.create-for-admin .label_line select{
+    font-size: 22px;
+    text-align: end;
+}
+.admin_pages_create .title{
+    margin: 2% 0 1%;
+}
+.admin_pages_create .admin_menu{
+    margin: 10px 0;
+    width: calc(100% - 200px);
+}
+.admin_table .little{
+    width: 550px;
+    margin: 0 auto;
+}

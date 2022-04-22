@@ -39,21 +39,24 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                 <div class="general_info_user">
                     <div class="info_block">
                         <div class="label">Почта</div>
-                        <div class="label">Группы</div>
+                        <div class="label">Группа</div>
                     </div>
                     <div class="result_block">
-                        <div class="label valueNull">
-                            <?php echo $_SESSION['mail'];?>
-                        </div>
-                        <?php foreach (callProc("GroupOnStud", $_SESSION['id_student']) as $key => $group): ?>
-                        <div class="label valueNull">
-                            <a href="info_group.php?id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>"><?= $group['number']; ?></a>
-                        </div>
-                        <?php endforeach; ?>
+                        <?php if (iconv_strlen($_SESSION['mail']) == 0): ?>
+                            <div class="label valueNull">Отсутствует</div>
+                        <?php else: ?>
+                            <div class="label"><?= $_SESSION['mail'];?></div>
+                        <?php endif; ?>
 
-                        <!--                        <div class="label">-->
-                        <!--                            Конструирование К-120-->
-                        <!--                        </div>-->
+                        <?php if (count(callProc("GroupOnStud", $_SESSION['id_student'])) == 0): ?>
+                            <div class="label valueNull">Отсутствует</div>
+                        <?php else: ?>
+                            <?php foreach (callProc("GroupOnStud", $_SESSION['id_student']) as $key => $group): ?>
+                                <div class="label">
+                                    <a class="label" href="info_group.php?id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>"><?= $group['number']; ?></a>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                     <div class="info_block">
                         <div class="label">Логин</div>
@@ -64,9 +67,11 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                         <div class="label">
                             <?php echo $_SESSION['login'];?>
                         </div>
-                        <div class="label valueNull">
-                            <?php echo $_SESSION['phone'];?>
-                        </div>
+                        <?php if (iconv_strlen($_SESSION['phone']) == 0): ?>
+                            <div class="label valueNull">Отсутствует</div>
+                        <?php else: ?>
+                            <div class="label"><?= $_SESSION['phone'];?></div>
+                        <?php endif; ?>
                         <div class="label valueNull">
                             <?php echo $_SESSION['balance'];?> BYN
                         </div>

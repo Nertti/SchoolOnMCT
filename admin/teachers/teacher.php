@@ -25,7 +25,13 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     <div class="down">
                         <div class="up">
                             <div>
-                                <div>Телефон: <span class="valueNull"><?= $teacher['phone'] ?></span></div>
+                                <?php if (iconv_strlen($teacher['phone']) == 0): ?>
+                                    <div>
+                                        <span>Телефон: </span><span class="valueNull">Отсутствует</span>
+                                    </div>
+                                <?php else: ?>
+                                    <div>Телефон: <?= $teacher['phone'] ?></div>
+                                <?php endif; ?>
                                 <div>Логин: <?= $teacher['login'] ?></div>
                             </div>
                             <div class="group_list">

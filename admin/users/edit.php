@@ -37,11 +37,11 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     </label>
                     <label>
                         Почта:
-                        <input value="<?= $student['mail'] ?>" type="text" name="email">
+                        <input value="<?= $student['mail'] ?>" type="email" name="email">
                     </label>
                     <label>
                         Телефон:
-                        <input value="<?= $student['phone'] ?>" type="text" name="phone">
+                        <input value="<?= $student['phone'] ?>" type="text" name="phone" placeholder="+375 хх ххх хх хх">
                     </label>
                 </div>
                 <div class="create-btn">

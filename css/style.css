@@ -1141,13 +1141,13 @@ footer span {
   color: #4c4c4c;
 }
 
-.admin_pages .admin_table {
+.admin_table {
   max-width: calc(100% - 350px);
   width: 100%;
   max-height: 800px;
 }
 
-.admin_pages .admin_table .admin_menu {
+.admin_table .admin_menu {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1157,11 +1157,11 @@ footer span {
           justify-content: flex-end;
 }
 
-.admin_pages .admin_table .admin_menu * {
+.admin_table .admin_menu * {
   margin: 0 0 0 20px;
 }
 
-.admin_pages .admin_table .title_menu {
+.admin_table .title_menu {
   padding: 20px 0;
   border-bottom: 1px solid #4c4c4c;
   border-top: 1px solid #4c4c4c;
@@ -1171,25 +1171,25 @@ footer span {
   margin: 20px auto;
 }
 
-.admin_pages .admin_table .title_menu * {
+.admin_table .title_menu * {
   font-size: 20px;
   font-weight: 500;
 }
 
-.admin_pages .admin_table .title_menu *.active {
+.admin_table .title_menu *.active {
   color: #d9b91b;
 }
 
-.admin_pages .admin_table .title_menu *.active:hover {
+.admin_table .title_menu *.active:hover {
   color: #4c4c4c;
 }
 
-.admin_pages .admin_table .title {
+.admin_table .title {
   text-align: center;
   margin: 20px auto;
 }
 
-.admin_pages .admin_table .search_menu {
+.admin_table .search_menu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1198,25 +1198,25 @@ footer span {
           align-items: center;
 }
 
-.admin_pages .admin_table .search_menu * {
+.admin_table .search_menu * {
   font-size: 22px;
   font-weight: normal;
   line-height: 25px;
   margin: 0 0 0 10px;
 }
 
-.admin_pages .admin_table .search_menu button:hover {
+.admin_table .search_menu button:hover {
   color: #5788e3;
 }
 
-.admin_pages .admin_table .search_menu .search {
+.admin_table .search_menu .search {
   border-radius: 5px;
   border: 1px solid #4c4c4c;
   padding: 0 10px;
   line-height: 30px;
 }
 
-.admin_pages .admin_table .head_table {
+.admin_table .head_table {
   border-bottom: 1px solid #4c4c4c;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1224,38 +1224,38 @@ footer span {
   margin: 15px 0 0;
 }
 
-.admin_pages .admin_table .head_table * {
+.admin_table .head_table * {
   font-weight: 500;
   line-height: 35px;
   font-size: 22px;
 }
 
-.admin_pages .admin_table .number {
+.admin_table .number {
   width: 50px;
   text-align: center;
 }
 
-.admin_pages .admin_table .surname {
+.admin_table .surname {
   width: 300px;
 }
 
-.admin_pages .admin_table .balance {
+.admin_table .balance {
   width: 110px;
   text-align: center;
 }
 
-.admin_pages .admin_table .count {
+.admin_table .count {
   width: 220px;
   text-align: center;
 }
 
-.admin_pages .admin_table .price {
+.admin_table .price {
   max-width: 150px;
   text-align: center;
   width: 100%;
 }
 
-.admin_pages .admin_table .control {
+.admin_table .control {
   width: calc(100% - 450px);
   text-align: center;
   display: -webkit-box;
@@ -1265,15 +1265,19 @@ footer span {
       justify-content: space-around;
 }
 
-.admin_pages .admin_table .control .edit:hover {
+.admin_table .control .add:hover {
+  color: #1bd91e;
+}
+
+.admin_table .control .edit:hover {
   color: #d9b91b;
 }
 
-.admin_pages .admin_table .control .delete:hover {
+.admin_table .control .delete:hover {
   color: #c75454;
 }
 
-.admin_pages .admin_table .table {
+.admin_table .table {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1285,18 +1289,18 @@ footer span {
   height: 500px;
 }
 
-.admin_pages .admin_table .table::-webkit-scrollbar {
+.admin_table .table::-webkit-scrollbar {
   background-color: #ffffff;
 }
 
-.admin_pages .admin_table .table div {
+.admin_table .table div {
   border-bottom: 1px solid #4c4c4c;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.admin_pages .admin_table .table div * {
+.admin_table .table div * {
   line-height: 35px;
   font-size: 22px;
   font-weight: normal;
@@ -1308,7 +1312,7 @@ footer span {
 
 .admin_pages_create .title {
   text-align: center;
-  margin: 4% 0 3%;
+  margin: 3% 0 1%;
 }
 
 .admin_pages_create .create-for-admin {
@@ -1383,6 +1387,32 @@ footer span {
 
 .admin_pages_create .create-btn *:hover {
   background: rgba(76, 76, 76, 0.25);
+}
+
+.admin_pages_create .add_stud_in_group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: calc(100% - 300px);
+  width: 100%;
+  margin: 0 auto;
+  color: #4c4c4c;
+}
+
+.admin_pages_create .add_stud_in_group .admin_table {
+  max-width: 750px;
+}
+
+.admin_pages_create .add_stud_in_group .control {
+  margin: 0 0 0 auto;
+  width: 250px;
+}
+
+.admin_pages_create .add_stud_in_group .surname {
+  width: 400px;
 }
 
 .block_spravka {
@@ -1538,7 +1568,7 @@ footer span {
     display: none;
   }
 
-  .admin_pages .admin_table {
+  .admin_table {
     max-width: 850px;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
@@ -1547,13 +1577,13 @@ footer span {
     padding: 50px 0 0 0;
   }
 
-  .admin_pages .admin_table .title_menu {
+  .admin_table .title_menu {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
 
-  .admin_pages .admin_table .title {
+  .admin_table .title {
     font-size: 25px;
   }
 }

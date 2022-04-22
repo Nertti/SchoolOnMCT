@@ -26,7 +26,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     <div class="title">Уроки</div>
                     <form action="index.php" method="post" class="search_menu">
                         <label>
-                            Поиск по названия курса:
+                            Поиск по названия группы:
                             <input class="search" value="<?= $find_sql ?>" type="text" name="search">
                         </label>
                         <button type="submit" value="selectlessons" name="find">Найти</button>

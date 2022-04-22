@@ -1,5 +1,7 @@
 <?php
 $preg_phone = "/^\+375(25|29|33|44)[0-9]{7}$/";
+$error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
     $table = trim($_POST['btn-add']);
     if ($table === 'students') {
@@ -21,9 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         } elseif (iconv_strlen($pass) < 6 || iconv_strlen($pass) > 20) {
             $error = 'Длина пароля должна быть от 6 до 20 символов!';
         } else {
-            $check_login = selectOne($table, ['login' => $login]);
-            if ($check_login['login'] === $login) {
-                $error = 'Такой пользователь уже существует';
+            $check_login_student = selectOne('students', ['login' => $login]);
+            $check_login_teacher = selectOne('teachers', ['login' => $login]);
+            $check_login_admin = selectOne('admins', ['login' => $login]);
+            if (!$check_login_student == '') {
+                $error = 'Такой пользователь уже существует (учащийся)';
+            } elseif (!$check_login_teacher == '') {
+                $error = 'Такой пользователь уже существует (преподаватель)';
+            } elseif (!$check_login_admin == '') {
+                $error = 'Такой пользователь уже существует (админ)';
             } else {
                 $pass = password_hash($pass, PASSWORD_DEFAULT);
                 $post = [
@@ -44,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $last_name = trim($_POST['last_name']);
         $login = trim($_POST['login']);
         $pass = trim($_POST['pass']);
-        $phone = str_replace([' ', '(', ')','-',], '', trim($_POST['phone']));
+        $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
         if ($name === '' || $surname === '' || $login === '' || $pass === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля со звёздочкой';
         } elseif (iconv_strlen($name) > 30) {
@@ -60,9 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         } elseif (!preg_match($preg_phone, $phone) && !$phone == '') {
             $error = 'Введите верный телефон';
         } else {
-            $check_login = selectOne($table, ['login' => $login]);
-            if ($check_login['login'] === $login) {
-                $error = 'Такой пользователь уже существует';
+            $check_login_student = selectOne('students', ['login' => $login]);
+            $check_login_teacher = selectOne('teachers', ['login' => $login]);
+            $check_login_admin = selectOne('admins', ['login' => $login]);
+            if (!$check_login_student == '') {
+                $error = 'Такой пользователь уже существует (учащийся)';
+            } elseif (!$check_login_teacher == '') {
+                $error = 'Такой пользователь уже существует (преподаватель)';
+            } elseif (!$check_login_admin == '') {
+                $error = 'Такой пользователь уже существует (админ)';
             } else {
                 $pass = password_hash($pass, PASSWORD_DEFAULT);
                 $post = [
@@ -157,6 +171,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         } else {
             $post = [
                 'id_student' => $_GET['id_student'],
+                'id_group' => $group,
+            ];
+            $id = insertRow($table, $post);
+            header('location: ' . 'index.php');
+        }
+    }
+    if ($table === 'lessons') {
+        $group = trim($_POST['id_group']);
+        $date = trim($_POST['date']);
+        $time_start = trim($_POST['time_start']);
+        $time_end = trim($_POST['time_end']);
+        if ($group === '' || $time_start === '' || $date == '') {
+            $error = 'Одно из полей пустое. Обязательно заполните поля';
+        } else {
+            $post = [
+                'date' => $date,
+                'time_start' => $time_start,
+                'time_end' => $time_end,
                 'id_group' => $group,
             ];
             $id = insertRow($table, $post);

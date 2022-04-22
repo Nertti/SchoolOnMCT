@@ -37,7 +37,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     </label>
                     <label>
                         Телефон:
-                        <input value="<?= $teacher['phone'] ?>" type="text" name="phone">
+                        <input value="<?= $teacher['phone'] ?>" type="text" name="phone" placeholder="+375 хх ххх хх хх">
                     </label>
                 </div>
                 <div class="create-btn">

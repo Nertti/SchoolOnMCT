@@ -1,5 +1,6 @@
 <?php
 $id = '';
+$preg_phone = "/^\+375(25|29|33|44)[0-9]{7}$/";
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
     $table = $_GET['table'];
     if ($table === 'students') {
@@ -12,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
         $id = 'id_group = ' . $_GET['del_id'];
     } elseif ($table === 'lessons') {
         $id = 'id_lesson = ' . $_GET['del_id'];
+    } elseif ($table === 'accounting') {
+        $id = 'id_accounting = ' . $_GET['del_id'];
     }
     deleteRow($table, $id);
     header('location: ' . 'index.php');
@@ -28,6 +31,8 @@ if (isset($_GET['id_edit'])) {
         $course = selectOne($table, ['id_course' => $id]);
     } elseif ($table === 'groups') {
         $group = selectOne($table, ['id_group' => $id]);
+        $number = $group['number'];
+
     }
 }
 
@@ -41,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         $last_name = trim($_POST['last_name']);
         $login = trim($_POST['login']);
         $email = trim($_POST['email']);
-        $phone = str_replace([' ', '(', ')','-',], '', trim($_POST['phone']));
+        $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
         if ($name === '' || $surname === '' || $login === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля';
         } elseif (iconv_strlen($name) > 30) {
@@ -52,10 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
             $error = 'Слишком длинное отчество!';
         } elseif (iconv_strlen($email) > 50) {
             $error = 'Длина почты может быть до 50 символов!';
-        } elseif (iconv_strlen($phone) > 13) {
-            $error = 'Длина логина может быть до 13 символов!';
+        } elseif (!preg_match($preg_phone, $phone) && !$phone == '') {
+            $error = 'Введите корректный номер телефона';
         } elseif (iconv_strlen($login) < 3 || iconv_strlen($login) > 15) {
             $error = 'Длина логина может быть от 3 до 15 символов!';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) && !$email == '') {
+            $error = 'Введите корректный адрес электронной почты';
         } else {
             $post = [
                 'name' => $name,
@@ -76,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         $surname = trim($_POST['surname']);
         $last_name = trim($_POST['last_name']);
         $login = trim($_POST['login']);
-        $phone = str_replace([' ', '(', ')','-',], '', trim($_POST['phone']));
+        $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
         if ($name === '' || $surname === '' || $login === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля';
         } elseif (iconv_strlen($name) > 30) {
@@ -85,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
             $error = 'Слишком длинная фамилия!';
         } elseif (iconv_strlen($last_name) > 50) {
             $error = 'Слишком длинное отчество!';
-        } elseif (iconv_strlen($phone) > 13) {
-            $error = 'Длина логина может быть до 13 символов!';
+        } elseif (!preg_match($preg_phone, $phone) && !$phone == '') {
+            $error = 'Введите корректный номер телефона';
         } elseif (iconv_strlen($login) < 3 || iconv_strlen($login) > 15) {
             $error = 'Длина логина может быть от 3 до 15 символов!';
         } else {
@@ -113,17 +120,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         } elseif (iconv_strlen($price) > 3) {
             $error = 'Слишком большая цена';
         } else {
-                $post = [
-                    'name' => $name,
-                    'price' => $price,
-                ];
+            $post = [
+                'name' => $name,
+                'price' => $price,
+            ];
             updateRow('courses', $id, $post);
             header('location: ' . 'index.php');
-            }
         }
-}
+    }
+    if ($table === 'groups') {
+        $id = 'id_group = ' . $_GET['id_edit'];
+        $number = trim($_POST['number']);
+        $course = trim($_POST['id_course']);
+        $teacher = trim($_POST['id_teacher']);
+        if ($number === '' || $course === '') {
+            $error = 'Одно из полей пустое. Обязательно заполните поля';
+        } elseif (iconv_strlen($number) > 5) {
+            $error = 'Слишком длинный номер группы!';
+        } else {
+            $post = [
+                'number' => $number,
+                'id_course' => $course,
+                'id_teacher' => $teacher,
+            ];
+            updateRow('groups', $id, $post);
+            header('location: ' . 'index.php');
+        }
+    }
 
+}
+//
 if (isset($_GET['id_student_pay'])) {
     $id = $_GET['id_student_pay'];
     $student = selectOne('students', ['id_student' => $id]);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id_accounting'])) {
+    $id = 'id_accounting = ' . $_GET['del_id_accounting'];
+    deleteRow('accounting', $id);
+    header('Location: editStudentInGroup.php?&id_group=' . $_GET['id_group']);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['add_id_student'])) {
+    $post = [
+        'id_student' => $_GET['add_id_student'],
+        'id_group' => $_GET['id_group'],
+    ];
+    $id = insertRow('accounting', $post);
+    header('Location: editStudentInGroup.php?&id_group=' . $_GET['id_group']);
 }

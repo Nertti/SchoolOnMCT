@@ -23,8 +23,20 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 <div class="name"><?= $student['surname'] . ' ' . $student['name'] . ' ' . $student['last_name'] ?></div>
                 <div class="info_student">
                     <div class="contact">
-                        <div>Почта: <span class="valueNull"><?= $student['mail'] ?></span></div>
-                        <div>Телефон: <span class="valueNull"><?= $student['phone'] ?></span></div>
+                        <?php if (iconv_strlen($student['mail']) == 0): ?>
+                            <div>
+                                <span>Почта: </span><span class="valueNull">Отсутствует</span>
+                            </div>
+                        <?php else: ?>
+                            <div>Почта: <?= $student['mail'] ?></div>
+                        <?php endif; ?>
+                        <?php if (iconv_strlen($student['phone']) == 0): ?>
+                            <div>
+                                <span>Телефон: </span><span class="valueNull">Отсутствует</span>
+                            </div>
+                        <?php else: ?>
+                            <div>Телефон: <?= $student['phone'] ?></div>
+                        <?php endif; ?>
                     </div>
                     <div class="groups">
                         <div class="tag_group">Группа:</div>

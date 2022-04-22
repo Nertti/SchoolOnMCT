@@ -4,7 +4,11 @@ $teachers = selectALL('teachers');
 $admins = selectALL('admins');
 $courses = selectALL('courses');
 $groups = selectALL('groups');
-$lessons = selectALL('selectlessons');
+//$lessons = selectALL('selectlessons');
+$lessons = selectOrder('selectlessons', 'date, time_start');
+//$lessons = selectOrder('selectlessons', 'date, time_start', ['date' => date("Y-m-d"),]);
+//$lessons = selectOrder('selectlessons', 'date, time_start', [date('Y-m-d', strtotime('monday this week')) => 'date', date('Y-m-d', strtotime('saturday this week')) => 'date']);
+
 $lessonsDEL = selectALL('lessons');
 $sort_list = [
     'id_asc' => 'id_student',
@@ -32,14 +36,14 @@ if (array_key_exists($sort, $sort_list)) {
 } else {
     $sort_sql = reset($sort_list);
 }
-if(isset($_GET['sort'])){
-    if ($table === 'students'){
+if (isset($_GET['sort'])) {
+    if ($table === 'students') {
         $students = selectOrder('students', $sort_sql);
-    } elseif ($table === 'teachers'){
+    } elseif ($table === 'teachers') {
         $teachers = selectOrder('teachers', $sort_sql);
-    } elseif ($table === 'courses'){
+    } elseif ($table === 'courses') {
         $courses = selectOrder('courses', $sort_sql);
-    } elseif ($table === 'groups'){
+    } elseif ($table === 'groups') {
         $groups = selectOrder('groups', $sort_sql);
     }
 }
@@ -47,13 +51,13 @@ if(isset($_GET['sort'])){
 if (isset($_POST['find'])) {
     $table = $_POST['find'];
     $find_sql = $_POST['search'];
-    if($table === 'students'){
+    if ($table === 'students') {
         $students = selectFind($table, $find_sql, 'surname');
-    }elseif ($table === 'courses'){
+    } elseif ($table === 'courses') {
         $courses = selectFind($table, $find_sql, 'name');
-    }elseif ($table === 'teachers'){
+    } elseif ($table === 'teachers') {
         $teachers = selectFind($table, $find_sql, 'surname');
-    }elseif ($table === 'groups'){
+    } elseif ($table === 'groups') {
         $groups = selectFind($table, $find_sql, 'number');
     }
 }

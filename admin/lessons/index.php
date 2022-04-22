@@ -34,21 +34,24 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     </form>
                     <div class="head_table">
 <!--                        <span class="number">№</span>-->
-                        <span class="surname">Курс</span>
+                        <span class="date">Дата</span>
+                        <span class="date">Время</span>
                         <span class="price">Группа</span>
-                        <span class="price">Дата</span>
-                        <span class="price">Время</span>
-                        <span class="price">Управление</span>
+                        <span class="surname">Курс</span>
+                        <span class="control price">Управление</span>
                     </div>
                     <div class="table">
                         <?php foreach ($lessons as $key => $lesson): ?>
                             <div class="row_table">
 <!--                                <span class="number">--><?//= $key + 1; ?><!--</span>-->
-                                <span class="surname"><?php echo $lesson['name']?></span>
+                                <span class="date"><?php
+                                    $date = new DateTime($lesson['date']);
+                                    echo $date->format('d.m') ?></span>
+                                <span class="date"><?= mb_substr($lesson['time_start'], 0, 5) ?></span>
                                 <span class="price"><?= $lesson['number']; ?></span>
-                                <span class="price"><?= $lesson['date']; ?></span>
-                                <span class="price"><?= $lesson['time_start']; ?></span>
-                                <span class="price">
+                                <span class="surname"><?php echo $lesson['name']?></span>
+
+                                <span class="control price" >
 <!--                                <a class="edit" href="student.php?table=students&id_edit=--><?//= $lesson['id_lesson']; ?><!--">Информация</a>-->
                                 <a class="delete" onClick="return window.confirm('Удалить урок?');" href="?table=lessons&del_id=<?= $lesson['id_lesson']; ?>">Удалить</a>
                             </span>

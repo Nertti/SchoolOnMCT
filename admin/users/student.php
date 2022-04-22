@@ -17,6 +17,8 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="container">
             <div class="info_page">
                 <div class="admin_menu">
+                    <a style="margin: 0 auto 0 0"
+                       href="create_pay.php?id_student_pay=<?= $student['id_student'] ?>">Внести оплату</a>
                     <a href="edit.php?table=students&id_edit=<?= $student['id_student']; ?>">Редактировать</a>
                     <a href="javascript:history.go(-1)">Назад</a>
                 </div>
@@ -60,10 +62,6 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <div>Баланс: <?= $student['balance'] ?> BYN</div>
                     </div>
                 </div>
-                <div class="edit_line_student">
-                    <a href="create_pay.php?id_student_pay=<?= $student['id_student'] ?>">Внести оплату</a>
-                </div>
-
             </div>
         </div>
     </main>

@@ -53,3 +53,7 @@ select{
     width: 550px;
     margin: 0 auto;
 }
+.date{
+    width: 100px;
+    text-align: center;
+}

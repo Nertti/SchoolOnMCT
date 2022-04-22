@@ -90,14 +90,13 @@ function selectOrder($table, $sort_sql, $params = [])
     if (!empty($params)) {
         $i = 0;
         foreach ($params as $key => $value) {
-
-            if (!is_numeric($value)) {
-                $value = "'" . $value . "'";
-            }
+            //массив ассоциативный наоборот
+            $value = "`" . $value . "`";
+            $key = "'" . $key . "'";
             if ($i === 0) {
-                $sql = $sql . " WHERE $key = $value";
+                $sql = $sql . " WHERE $value >= $key";
             } else {
-                $sql = $sql . " AND $key = $value";
+                $sql = $sql . " AND $value <= $key";
             }
             $i++;
         }

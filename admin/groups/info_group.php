@@ -27,16 +27,9 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     <div class="title_menu">
                         <?php include SITE_ROOT . '/admin/include-admin/admin_panel.php' ?>
                     </div>
-                    <div class="title">Группа <?= $_GET['number'] ?></div>
-                    <?php if (count($teach_in_group) == 0): ?>
-                        <div class="title teacher_group">Преподаватель: <span class="valueNull">Отсутствует</span></div>
-                    <?php else: ?>
-                        <?php foreach ($teach_in_group as $key => $teacher): ?>
-                            <div class="title teacher_group">Преподаватель: <?php echo $teacher['surname'] . ' ';
-                                echo mb_substr($teacher['name'], 0, 1) . '.';
-                                echo mb_substr($teacher['last_name'], 0, 1) . '.'; ?></div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                    <div class="title">Группа <?= $group['number'] ?></div>
+                    <div class="title teacher_group">Курс: <?= $course['name'] ?></div>
+
                     <div class="head_table little">
                         <span class="number">№</span>
                         <a class="surname">Фамилия И.О.</a>

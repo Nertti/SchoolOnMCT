@@ -24,25 +24,28 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <span>Номер:</span>
                         <input value="<?= $number ?>" type="text" name="number" required>
                     </label>
+                    <div class="error_create"></div>
+                    <label class="label_line">
+                        <span>Курс:</span>
+                        <select name="id_course" required>
+                            <option value="" selected>'Выбрать'</option>
+                            <?php foreach ($courses as $key => $course): ?>
+                                <option value="<?= $course['id_course']; ?>"><?= $course['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                     <div class="select">
-                        <label>
-                            <span>Курс:</span>
-                            <select name="id_course" required>
-                                <option value="" selected>'Выбрать'</option>
-                                <?php foreach ($courses as $key => $course): ?>
-                                    <option value="<?= $course['id_course']; ?>"><?= $course['name']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Преподаватель:</span>
-                            <select name="id_teacher" required>
-                                <option value="" selected>'Выбрать'</option>
-                                <?php foreach ($teachers as $key => $teacher): ?>
-                                    <option value="<?= $teacher['id_teacher']; ?>"><?= $teacher['surname']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
+
+                        <!--                        <label>-->
+                        <!--                            <span>Преподаватель:</span>-->
+                        <!--                            <select name="id_teacher" required>-->
+                        <!--                                <option value="" selected>'Выбрать'</option>-->
+                        <!--                                --><?php //foreach ($teachers as $key => $teacher): ?>
+                        <!--                                    <option value="-->
+                        <? //= $teacher['id_teacher']; ?><!--">--><? //= $teacher['surname']; ?><!--</option>-->
+                        <!--                                --><?php //endforeach; ?>
+                        <!--                            </select>-->
+                        <!--                        </label>-->
                     </div>
                 </div>
                 <div class="create-btn">

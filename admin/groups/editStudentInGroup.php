@@ -15,9 +15,11 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
     <main class="main">
         <div class="admin_pages_create">
             <div class="admin_menu">
-               <a href="index.php">Вернуться на группы</a>
+               <a href="info_group.php?id_group=<?= $_GET['id_group']; ?>">Назад</a>
             </div>
             <div class="title">Изменение состава группы</div>
+            <div class="error_create"><?= $error ?></div>
+
             <div class="add_stud_in_group">
                 <div class="admin_table">
                     <div class="title">Учащиеся группы</div>

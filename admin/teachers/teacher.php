@@ -21,7 +21,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="name"><?= $teacher['surname'] . ' ' . $teacher['name'] . ' ' . $teacher['last_name'] ?></div>
                 <div class="info_teacher">
-                    <div class="img"></div>
+<!--                    <div class="img"></div>-->
                     <div class="down">
                         <div class="up">
                             <div>
@@ -34,24 +34,13 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                 <?php endif; ?>
                                 <div>Логин: <?= $teacher['login'] ?></div>
                             </div>
-                            <div class="group_list">
-                                <div>Список групп:</div>
-                                <?php if (count(callProc("groupsTeacher", $teacher['id_teacher'])) == 0): ?>
-                                    <div class="valueNull">
-                                        <span>Отсутствует</span>
-                                    </div>
-                                <?php else: ?>
-                                    <?php foreach (callProc("groupsTeacher", $teacher['id_teacher']) as $key => $group): ?>
-                                        <div class="valueNull">
-                                            <a class="number_group"
-                                               href="../groups/info_group.php?id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>"><?= $group['number']; ?></a>
-                                        </div>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </div>
                         </div>
                         <div class="title_desc">Описание</div>
-                        <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, eos!</div>
+                        <?php if (iconv_strlen($teacher['description']) == 0): ?>
+                            <div class="description valueNull">Отсутствует</div>
+                        <?php else: ?>
+                            <div class="description"><?= $teacher['description'] ?></div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

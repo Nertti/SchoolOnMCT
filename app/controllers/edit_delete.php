@@ -113,15 +113,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         $id = 'id_course = ' . $_GET['id_edit'];
         $name = trim($_POST['name']);
         $price = trim($_POST['price']);
+        $description = trim($_POST['description']);
         if ($name === '' || $price === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля';
         } elseif (iconv_strlen($name) > 30) {
             $error = 'Слишком длинное имя!';
+        } elseif (iconv_strlen($description) > 300) {
+            $error = 'Слишком длинное описание!';
         } elseif (iconv_strlen($price) > 3) {
             $error = 'Слишком большая цена';
         } else {
             $post = [
                 'name' => $name,
+                'description' => $description,
                 'price' => $price,
             ];
             updateRow('courses', $id, $post);
@@ -131,17 +135,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
     if ($table === 'groups') {
         $id = 'id_group = ' . $_GET['id_edit'];
         $number = trim($_POST['number']);
-        $course = trim($_POST['id_course']);
-        $teacher = trim($_POST['id_teacher']);
-        if ($number === '' || $course === '') {
+//        $course = trim($_POST['id_course']);
+        if ($number === '' ) {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (iconv_strlen($number) > 5) {
             $error = 'Слишком длинный номер группы!';
         } else {
             $post = [
                 'number' => $number,
-                'id_course' => $course,
-                'id_teacher' => $teacher,
             ];
             updateRow('groups', $id, $post);
             header('location: ' . 'index.php');
@@ -154,18 +155,23 @@ if (isset($_GET['id_student_pay'])) {
     $id = $_GET['id_student_pay'];
     $student = selectOne('students', ['id_student' => $id]);
 }
-
+//delete stud
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id_accounting'])) {
     $id = 'id_accounting = ' . $_GET['del_id_accounting'];
     deleteRow('accounting', $id);
     header('Location: editStudentInGroup.php?&id_group=' . $_GET['id_group']);
 }
-
+//add stud
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['add_id_student'])) {
-    $post = [
-        'id_student' => $_GET['add_id_student'],
-        'id_group' => $_GET['id_group'],
-    ];
-    $id = insertRow('accounting', $post);
-    header('Location: editStudentInGroup.php?&id_group=' . $_GET['id_group']);
+    $group = selectOne('groups', ['id_group' => $_GET['id_group']]);
+    if ($group['count_students'] >= 10) {
+        $error = 'Лимит учащихся группы 10';
+    } else {
+        $post = [
+            'id_student' => $_GET['add_id_student'],
+            'id_group' => $_GET['id_group'],
+        ];
+        $id = insertRow('accounting', $post);
+        header('Location: editStudentInGroup.php?&id_group=' . $_GET['id_group']);
+    }
 }

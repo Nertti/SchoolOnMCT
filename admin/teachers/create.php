@@ -44,6 +44,15 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <span>Пароль:</span>
                         <input type="password" name="pass" required>
                     </label>
+                    <label class="label_line">
+                        <span>Ставка:</span>
+                        <select name="id_time_work" required>
+                            <option value="" selected>'Выбрать'</option>
+                            <?php foreach ($time_work as $key => $time): ?>
+                                <option value="<?= $time['id_time_work']; ?>"><?= $time['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                 </div>
                 <div class="create-btn">
                     <button type="submit" name="btn-add" value="teachers">Добавить</button>

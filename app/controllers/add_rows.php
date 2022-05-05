@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $login = trim($_POST['login']);
         $pass = trim($_POST['pass']);
         $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
+        $time = trim($_POST['id_time_work']);
         if ($name === '' || $surname === '' || $login === '' || $pass === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля со звёздочкой';
         } elseif (iconv_strlen($name) > 30) {
@@ -86,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'login' => $login,
                     'password' => $pass,
                     'phone' => $phone,
+                    'id_time_work' => $time,
                 ];
                 $id = insertRow($table, $post);
                 header('location: ' . 'index.php');
@@ -95,10 +97,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
     if ($table === 'courses') {
         $name = trim($_POST['name']);
         $price = trim($_POST['price']);
+        $description = trim($_POST['description']);
         if ($name === '' || $price === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля';
         } elseif (iconv_strlen($name) > 30) {
             $error = 'Слишком длинное имя!';
+        } elseif (iconv_strlen($description) > 300) {
+            $error = 'Слишком длинное описание!';
         } elseif (iconv_strlen($price) > 3) {
             $error = 'Слишком большая цена';
         } else {
@@ -108,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             } else {
                 $post = [
                     'name' => $name,
+                    'description' => $description,
                     'price' => $price,
                 ];
                 $id = insertRow($table, $post);
@@ -118,8 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
     if ($table === 'groups') {
         $number = trim($_POST['number']);
         $course = trim($_POST['id_course']);
-        $teacher = trim($_POST['id_teacher']);
-        if ($number === '' || $course === '' || $teacher === '') {
+        if ($number === '' || $course === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (iconv_strlen($number) > 5) {
             $error = 'Слишком длинный номер группы!';
@@ -131,7 +136,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 $post = [
                     'number' => $number,
                     'id_course' => $course,
-                    'id_teacher' => $teacher,
                 ];
                 $id = insertRow($table, $post);
                 header('location: ' . 'index.php');
@@ -179,10 +183,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
     }
     if ($table === 'lessons') {
         $group = trim($_POST['id_group']);
+        $teacher = trim($_POST['id_teacher']);
         $date = trim($_POST['date']);
         $time_start = trim($_POST['time_start']);
-        $time_end = trim($_POST['time_end']);
-        if ($group === '' || $time_start === '' || $date == '') {
+        $time_end = date("H:i", strtotime('+60 minutes', strtotime($time_start)));
+//        $time_end = trim($_POST['time_end']);
+
+        $lessons_on_teach = callProc('selectLessonsTeachInWeek',$teacher .', "' . date('Y-m-d', strtotime('monday this week')) .'","' . date('Y-m-d', strtotime('saturday this week')). '"');
+        $time = callProc('selectTimeTeacher', $teacher);
+        $timeOne = $time['0'];
+        if(count($lessons_on_teach) > $timeOne['time']){
+            $error = 'Количество часов в неделю преподавателя превышено';
+        } elseif ($group === '' || $time_start === '' || $date == '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } else {
             $post = [
@@ -190,6 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 'time_start' => $time_start,
                 'time_end' => $time_end,
                 'id_group' => $group,
+                'id_teacher' => $teacher,
             ];
             $id = insertRow($table, $post);
             header('location: ' . 'index.php');

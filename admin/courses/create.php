@@ -25,6 +25,10 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <input value="<?= $name ?>" type="text" name="name" required>
                     </label>
                     <label>
+                        Описание:
+                        <input value="<?= $description ?>" type="text" name="description">
+                    </label>
+                    <label>
                         <span>Стоимость:</span>
                         <input value="<?= $price ?>" type="number" min="0" max="999" name="price" required>
                     </label>

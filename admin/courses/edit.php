@@ -23,10 +23,15 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <input value="<?= $course['name'] ?>" type="text" name="name" required>
                     </label>
                     <label>
+                        Описание:
+                        <input value="<?= $course['description'] ?>" type="text" name="description">
+                    </label>
+                    <label>
                         <span>Стоимость:</span>
                         <input value="<?= $course['price'] ?>" type="number" min="0" max="999" name="price" required>
                     </label>
-                </div>                <div class="create-btn">
+                </div>
+                <div class="create-btn">
                     <button type="submit" name="btn-update" value="courses">Обновить</button>
                     <a href="javascript:history.go(-1)">Назад</a>
                 </div>

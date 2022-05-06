@@ -8,6 +8,7 @@ $phone = '';
 $number = '';
 $find_sql = '';
 $check_login = '';
+$description = '';
 
 include SITE_ROOT . '/app/db/db.php';
 include SITE_ROOT . '/app/controllers/registry.php';

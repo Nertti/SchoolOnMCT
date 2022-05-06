@@ -64,16 +64,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) && !$email == '') {
             $error = 'Введите корректный адрес электронной почты';
         } else {
-            $post = [
-                'name' => $name,
-                'surname' => $surname,
-                'last_name' => $last_name,
-                'login' => $login,
-                'mail' => $email,
-                'phone' => $phone,
-            ];
-            updateRow('students', $id, $post);
-            header('location: ' . 'index.php');
+            $check_login_student = selectOne('students', ['login' => $login]);
+            $check_login_teacher = selectOne('teachers', ['login' => $login]);
+            $check_login_admin = selectOne('admins', ['login' => $login]);
+            if ($check_login_student['id_student'] !== $_GET['id_edit'] && !$check_login_student == '') {
+                $error = 'Такой пользователь уже существует (учащийся)';
+            } elseif ($check_login_teacher['id_teacher'] !== $_GET['id_edit'] && !$check_login_teacher == '') {
+                $error = 'Такой пользователь уже существует (преподаватель)';
+            } elseif ($check_login_admin['id_admin'] !== $_GET['id_edit'] && !$check_login_admin == '') {
+                $error = 'Такой пользователь уже существует (админ)';
+            } else {
+                $post = [
+                    'name' => $name,
+                    'surname' => $surname,
+                    'last_name' => $last_name,
+                    'login' => $login,
+                    'mail' => $email,
+                    'phone' => $phone,
+                ];
+                updateRow('students', $id, $post);
+                header('location: ' . 'index.php');
+            }
         }
 
     }
@@ -83,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         $surname = trim($_POST['surname']);
         $last_name = trim($_POST['last_name']);
         $login = trim($_POST['login']);
+        $time = trim($_POST['id_time_work']);
         $phone = str_replace([' ', '(', ')', '-',], '', trim($_POST['phone']));
         if ($name === '' || $surname === '' || $login === '') {
             $error = 'Одно из полей пустое. Обязательно заполните все поля';
@@ -97,17 +109,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         } elseif (iconv_strlen($login) < 3 || iconv_strlen($login) > 15) {
             $error = 'Длина логина может быть от 3 до 15 символов!';
         } else {
-            $post = [
-                'name' => $name,
-                'surname' => $surname,
-                'last_name' => $last_name,
-                'login' => $login,
-                'phone' => $phone,
-            ];
-            updateRow('teachers', $id, $post);
-            header('location: ' . 'index.php');
-        }
+            $check_login_student = selectOne('students', ['login' => $login]);
+            $check_login_teacher = selectOne('teachers', ['login' => $login]);
+            $check_login_admin = selectOne('admins', ['login' => $login]);
+            if ($check_login_student['id_student'] !== $_GET['id_edit'] && !$check_login_student == '') {
+                $error = 'Такой пользователь уже существует (учащийся)';
+            } elseif ($check_login_teacher['id_teacher'] !== $_GET['id_edit'] && !$check_login_teacher == '') {
+                $error = 'Такой пользователь уже существует (преподаватель)';
+            } elseif ($check_login_admin['id_admin'] !== $_GET['id_edit'] && !$check_login_admin == '') {
+                $error = 'Такой пользователь уже существует (админ)';
+            } else {
+                $post = [
+                    'name' => $name,
+                    'surname' => $surname,
+                    'last_name' => $last_name,
+                    'login' => $login,
+                    'phone' => $phone,
+                    'id_time_work' => $time,
 
+                ];
+                updateRow('teachers', $id, $post);
+                header('location: ' . 'index.php');
+            }
+        }
     }
     if ($table === 'courses') {
         $id = 'id_course = ' . $_GET['id_edit'];
@@ -123,20 +147,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
         } elseif (iconv_strlen($price) > 3) {
             $error = 'Слишком большая цена';
         } else {
-            $post = [
-                'name' => $name,
-                'description' => $description,
-                'price' => $price,
-            ];
-            updateRow('courses', $id, $post);
-            header('location: ' . 'index.php');
+            $check_name = selectOne($table, ['name' => $name]);
+            if ($check_name['id_course'] !== $_GET['id_edit']) {
+                $error = 'Такое название уже существует';
+            } else {
+                $post = [
+                    'name' => $name,
+                    'description' => $description,
+                    'price' => $price,
+                ];
+                updateRow('courses', $id, $post);
+                header('location: ' . 'index.php');
+            }
         }
     }
     if ($table === 'groups') {
         $id = 'id_group = ' . $_GET['id_edit'];
         $number = trim($_POST['number']);
 //        $course = trim($_POST['id_course']);
-        if ($number === '' ) {
+        if ($number === '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } elseif (iconv_strlen($number) > 5) {
             $error = 'Слишком длинный номер группы!';

@@ -39,10 +39,18 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         Телефон:
                         <input value="<?= $teacher['phone'] ?>" type="text" name="phone" placeholder="+375 хх ххх хх хх">
                     </label>
+                    <label class="label_line">
+                        <span>Ставка:</span>
+                        <select name="id_time_work" required>
+                            <?php foreach ($time_work as $key => $time): ?>
+                                <option <?php if ($time['id_time_work'] == $teacher['id_time_work']) {echo 'selected';} ?> value="<?= $time['id_time_work']; ?>"><?= $time['name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </label>
                 </div>
                 <div class="create-btn">
                     <button type="submit" name="btn-update" value="teachers">Обновить</button>
-                    <a href="javascript:history.go(-1)">Назад</a>
+                    <a href="index.php">Назад</a>
                 </div>
             </form>
         </div>

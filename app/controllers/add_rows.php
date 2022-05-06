@@ -189,10 +189,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $time_end = date("H:i", strtotime('+60 minutes', strtotime($time_start)));
 //        $time_end = trim($_POST['time_end']);
 
-        $lessons_on_teach = callProc('selectLessonsTeachInWeek',$teacher .', "' . date('Y-m-d', strtotime('monday this week')) .'","' . date('Y-m-d', strtotime('saturday this week')). '"');
+        $lessons_on_teach = callProc('selectLessonsTeachInWeek',
+            $teacher . ', "' .
+            date('Y-m-d', strtotime('monday this week', strtotime($date))) . '","' .
+            date('Y-m-d', strtotime('saturday this week', strtotime($date))) . '"');
         $time = callProc('selectTimeTeacher', $teacher);
         $timeOne = $time['0'];
-        if(count($lessons_on_teach) > $timeOne['time']){
+        if (count($lessons_on_teach) >= $timeOne['time']) {
             $error = 'Количество часов в неделю преподавателя превышено';
         } elseif ($group === '' || $time_start === '' || $date == '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';

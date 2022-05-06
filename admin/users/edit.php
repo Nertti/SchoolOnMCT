@@ -46,7 +46,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="create-btn">
                     <button type="submit" name="btn-update" value="students">Обновить</button>
-                    <a href="javascript:history.go(-1)">Назад</a>
+                    <a href="index.php">Назад</a>
                 </div>
             </form>
         </div>

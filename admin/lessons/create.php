@@ -42,10 +42,20 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <span>Дата:</span>
                         <input value="<?= $date ?>" type="date" name="date" required>
                     </label>
-                    <label>
-                        <span>Время начала занятия:</span>
-                        <input value="<?= $time_start ?>" type="time" name="time_start" required>
+                    <label class="label_line">
+                        <span>Время занятия:</span>
+                        <select name="id_timetable" required>
+                            <option value="" selected>'Выбрать'</option>
+                            <?php foreach ($timetables as $key => $timetable): ?>
+                                <option value="<?= $timetable['id_timetable']; ?>"><?= mb_substr($timetable['time_start'], 0, 5) ?> - <?= mb_substr($timetable['time_end'], 0, 5) ?></option>
+<!--                                <option value="--><?//= $timetable['id_timetable']; ?><!--">--><?//= $timetable['name']; ?><!--</option>-->
+                            <?php endforeach; ?>
+                        </select>
                     </label>
+<!--                    <label>-->
+<!--                        <span>Время начала занятия:</span>-->
+<!--                        <input value="--><?//= $time_start ?><!--" type="time" name="time_start" required>-->
+<!--                    </label>-->
 <!--                    <label>-->
 <!--                        <span>Время окончания занятия:</span>-->
 <!--                        <input value="--><?//= $time_end ?><!--" type="time" name="time_end" required>-->

@@ -24,18 +24,18 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <?php include SITE_ROOT . '/admin/include-admin/admin_panel.php' ?>
                     </div>
                     <div class="title">Уроки</div>
-                    <form action="index.php" method="post" class="search_menu">
-                        <label>
-                            Поиск по названия группы:
-                            <input class="search" value="<?= $find_sql ?>" type="text" name="search">
-                        </label>
-                        <button type="submit" value="selectlessons" name="find">Найти</button>
-                        <button type="submit" value="selectlessons" name="reset">Сбросить</button>
-                    </form>
+<!--                    <form action="index.php" method="post" class="search_menu">-->
+<!--                        <label>-->
+<!--                            Поиск по названия группы:-->
+<!--                            <input class="search" value="--><?//= $find_sql ?><!--" type="text" name="search">-->
+<!--                        </label>-->
+<!--                        <button type="submit" value="selectlessons" name="find">Найти</button>-->
+<!--                        <button type="submit" value="selectlessons" name="reset">Сбросить</button>-->
+<!--                    </form>-->
                     <div class="head_table">
 <!--                        <span class="number">№</span>-->
                         <span class="date">Дата</span>
-                        <span class="date">Время</span>
+                        <span class="date">Номер</span>
                         <span class="price">Группа</span>
                         <span class="surname">Курс</span>
                         <span class="control price">Управление</span>
@@ -47,7 +47,8 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                 <span class="date"><?php
                                     $date = new DateTime($lesson['date']);
                                     echo $date->format('d.m') ?></span>
-                                <span class="date"><?= mb_substr($lesson['time_start'], 0, 5) ?></span>
+                                <span class="date"><?= $lesson['name_l'] ?></span>
+<!--                                <span class="date">--><?//= mb_substr($lesson['time_start'], 0, 5) ?><!--</span>-->
                                 <span class="price"><?= $lesson['number']; ?></span>
                                 <span class="surname"><?php echo $lesson['name']?></span>
 

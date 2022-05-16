@@ -6,7 +6,9 @@ $admins = selectALL('admins');
 $courses = selectALL('courses');
 $groups = selectALL('groups');
 //$lessons = selectALL('selectlessons');
-$lessons = selectOrder('selectlessons', 'date, time_start');
+$lessons = selectOrder('selectlessons', 'date, name_l');
+$timetables = selectALL('timetable');
+//$lessons = selectOrder('selectlessons', 'date, time_start');
 //$lessons = selectOrder('selectlessons', 'date, time_start', ['date' => date("Y-m-d"),]);
 //$lessons = selectOrder('selectlessons', 'date, time_start', [date('Y-m-d', strtotime('monday this week')) => 'date', date('Y-m-d', strtotime('saturday this week')) => 'date']);
 

@@ -185,8 +185,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $group = trim($_POST['id_group']);
         $teacher = trim($_POST['id_teacher']);
         $date = trim($_POST['date']);
-        $time_start = trim($_POST['time_start']);
-        $time_end = date("H:i", strtotime('+60 minutes', strtotime($time_start)));
+        $timetable = trim($_POST['id_timetable']);
+//        $time_start = trim($_POST['time_start']);
+//        $time_end = date("H:i", strtotime('+60 minutes', strtotime($time_start)));
 //        $time_end = trim($_POST['time_end']);
 
         $lessons_on_teach = callProc('selectLessonsTeachInWeek',
@@ -197,13 +198,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $timeOne = $time['0'];
         if (count($lessons_on_teach) >= $timeOne['time']) {
             $error = 'Количество часов в неделю преподавателя превышено';
-        } elseif ($group === '' || $time_start === '' || $date == '') {
+        } elseif ($group === '' || $timetable === '' || $date == '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
         } else {
             $post = [
                 'date' => $date,
-                'time_start' => $time_start,
-                'time_end' => $time_end,
+                'id_timetable' => $timetable,
                 'id_group' => $group,
                 'id_teacher' => $teacher,
             ];

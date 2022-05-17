@@ -94,7 +94,9 @@ function selectOrder($table, $sort_sql, $params = [])
             $value = "`" . $value . "`";
             $key = "'" . $key . "'";
             if ($i === 0) {
-                $sql = $sql . " WHERE $value >= $key";
+                $sql = $sql . " WHERE $value = $key";
+            } elseif ($i === 1) {
+                $sql = $sql . " AND $value >= $key";
             } else {
                 $sql = $sql . " AND $value <= $key";
             }

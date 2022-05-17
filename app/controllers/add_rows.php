@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'password' => $pass,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index.php');
+                header('location: ' . 'index_this.php');
             }
         }
     }
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'id_time_work' => $time,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index.php');
+                header('location: ' . 'index_this.php');
             }
         }
     }
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'price' => $price,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index.php');
+                header('location: ' . 'index_this.php');
             }
         }
     }
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'id_course' => $course,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index.php');
+                header('location: ' . 'index_this.php');
             }
         }
     }
@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'date' => $today,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index.php');
+                header('location: ' . 'index_this.php');
             }
         }
     }
@@ -178,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 'id_group' => $group,
             ];
             $id = insertRow($table, $post);
-            header('location: ' . 'index.php');
+            header('location: ' . 'index_this.php');
         }
     }
     if ($table === 'lessons') {
@@ -196,10 +196,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             date('Y-m-d', strtotime('saturday this week', strtotime($date))) . '"');
         $time = callProc('selectTimeTeacher', $teacher);
         $timeOne = $time['0'];
+        $this_lesson_group = selectOne('lessons', [
+            'id_group' => $group,
+            'date' => $date,
+            'id_timetable' => $timetable,
+            ]);
+        $this_lesson_teacher = selectOne('lessons', [
+            'id_teacher' => $teacher,
+            'date' => $date,
+            'id_timetable' => $timetable,
+        ]);
+        $this_lesson = selectOne('lessons', [
+            'date' => $date,
+            'id_timetable' => $timetable,
+        ]);
         if (count($lessons_on_teach) >= $timeOne['time']) {
             $error = 'Количество часов в неделю преподавателя превышено';
         } elseif ($group === '' || $timetable === '' || $date == '') {
             $error = 'Одно из полей пустое. Обязательно заполните поля';
+        } elseif (!$this_lesson_group == '') {
+            $error = 'Урок у этой группы в это время уже есть';
+        } elseif (!$this_lesson_teacher == '') {
+            $error = 'Урок у этого учителя в это время уже есть';
+        } elseif (!$this_lesson == '') {
+            $error = 'Урок в это время уже есть';
         } else {
             $post = [
                 'date' => $date,
@@ -208,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 'id_teacher' => $teacher,
             ];
             $id = insertRow($table, $post);
-            header('location: ' . 'index.php');
+            header('location: ' . 'index_this.php');
         }
     }
 
@@ -216,5 +236,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-back'])) {
-    header('location: ' . 'index.php');
+    header('location: ' . 'index_this.php');
 }

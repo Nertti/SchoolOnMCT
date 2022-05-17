@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-registry'])) {
             'password' => $pass,
         ];
         $id = insertRow('students', $post);
-        header('location: ' . 'index.php');
+        header('location: ' . 'index_this.php');
     }
 }
 //авторизация созданного пользователя
@@ -46,7 +46,7 @@ function userAuth($user)
     } else if (isset($user['id_teacher'])) {
         $_SESSION['id_teacher'] = $user['id_teacher'];
 
-        header('location: ' . 'index.php');
+        header('location: ' . 'index_this.php');
 
     }
 }

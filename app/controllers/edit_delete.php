@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
         $id = 'id_accounting = ' . $_GET['del_id'];
     }
     deleteRow($table, $id);
-    header('location: ' . 'index.php');
+    header('location: ' . 'index_this.php');
 }
 
 if (isset($_GET['id_edit'])) {
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                     'phone' => $phone,
                 ];
                 updateRow('students', $id, $post);
-                header('location: ' . 'index.php');
+                header('location: ' . 'index_this.php');
             }
         }
 
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
 
                 ];
                 updateRow('teachers', $id, $post);
-                header('location: ' . 'index.php');
+                header('location: ' . 'index_this.php');
             }
         }
     }
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                     'price' => $price,
                 ];
                 updateRow('courses', $id, $post);
-                header('location: ' . 'index.php');
+                header('location: ' . 'index_this.php');
             }
         }
     }
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                 'number' => $number,
             ];
             updateRow('groups', $id, $post);
-            header('location: ' . 'index.php');
+            header('location: ' . 'index_this.php');
         }
     }
 

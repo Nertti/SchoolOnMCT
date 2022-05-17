@@ -13,6 +13,9 @@ $timetables = selectALL('timetable');
 //$lessons = selectOrder('selectlessons', 'date, time_start', [date('Y-m-d', strtotime('monday this week')) => 'date', date('Y-m-d', strtotime('saturday this week')) => 'date']);
 
 $lessonsDEL = selectALL('lessons');
+
+
+
 $sort_list = [
     'id_asc' => 'id_student',
     'id_desc' => 'id_student DESC',
@@ -71,4 +74,40 @@ if (isset($_POST['reset'])) {
     $teachers = selectALL($table);
     $groups = selectALL($table);
     $find_sql = '';
+}
+$lessons1 = selectOrder('selectlessons', 'date', [
+    1 => 'name_l',
+    date('Y-m-d', strtotime('monday this week')) => 'date',
+    date('Y-m-d', strtotime('saturday this week')) => 'date'
+]);
+$lessons2 = selectOrder('selectlessons', 'date', [
+    2 => 'name_l',
+    date('Y-m-d', strtotime('monday this week')) => 'date',
+    date('Y-m-d', strtotime('saturday this week')) => 'date'
+]);
+$lessons3 = selectOrder('selectlessons', 'date', [
+    3 => 'name_l',
+    date('Y-m-d', strtotime('monday this week')) => 'date',
+    date('Y-m-d', strtotime('saturday this week')) => 'date'
+]);
+$lessons4 = selectOrder('selectlessons', 'date', [
+    4 => 'name_l',
+    date('Y-m-d', strtotime('monday this week')) => 'date',
+    date('Y-m-d', strtotime('saturday this week')) => 'date'
+]);
+$lessons5 = selectOrder('selectlessons', 'date', [
+    5 => 'name_l',
+    date('Y-m-d', strtotime('monday this week')) => 'date',
+    date('Y-m-d', strtotime('saturday this week')) => 'date'
+]);
+$lessons6 = selectOrder('selectlessons', 'date', [
+    6 => 'name_l',
+    date('Y-m-d', strtotime('monday this week')) => 'date',
+    date('Y-m-d', strtotime('saturday this week')) => 'date'
+]);
+if (isset($_POST['find_timetable'])) {
+    $table = $_POST['find_timetable'];
+    $group = $_POST['id_group'];
+
+
 }

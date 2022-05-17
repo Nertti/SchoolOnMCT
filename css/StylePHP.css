@@ -42,6 +42,10 @@ select{
     font-size: 22px;
     text-align: end;
 }
+.label_line select{
+    font-size: 22px;
+    text-align: end;
+}
 .admin_pages_create .title{
     margin: 2% 0 1%;
 }

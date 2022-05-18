@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'password' => $pass,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index_this.php');
+                header('location: ' . 'index.php');
             }
         }
     }
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'id_time_work' => $time,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index_this.php');
+                header('location: ' . 'index.php');
             }
         }
     }
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'price' => $price,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index_this.php');
+                header('location: ' . 'index.php');
             }
         }
     }
@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'id_course' => $course,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index_this.php');
+                header('location: ' . 'index.php');
             }
         }
     }
@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                     'date' => $today,
                 ];
                 $id = insertRow($table, $post);
-                header('location: ' . 'index_this.php');
+                header('location: ' . 'index.php');
             }
         }
     }
@@ -178,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 'id_group' => $group,
             ];
             $id = insertRow($table, $post);
-            header('location: ' . 'index_this.php');
+            header('location: ' . 'index.php');
         }
     }
     if ($table === 'lessons') {
@@ -228,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
                 'id_teacher' => $teacher,
             ];
             $id = insertRow($table, $post);
-            header('location: ' . 'index_this.php');
+            header('location: ' . 'index.php');
         }
     }
 

@@ -61,3 +61,25 @@ select{
     width: 100px;
     text-align: center;
 }
+
+.timetable_block{
+    width: 250px;
+    text-align: center;
+    height: 80px;
+    border-left: 1px solid #4c4c4c;
+    /*border-bottom: 0; !important;*/
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+}
+.timetable_block:last-child{
+    border-right: 1px solid #4c4c4c;
+}
+.perenos{
+    height: 35px;
+    width: 150px;
+    /*word-wrap: break-word; !* Перенос слов *!*/
+    /*word-break: break-all;*/
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}

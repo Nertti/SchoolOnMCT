@@ -3,7 +3,7 @@ include '../../path.php';
 include SITE_ROOT . '/app/include/redirectAdmin.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <?php include SITE_ROOT . '/app/include/head.php' ?>
     <title>Администратор</title>
@@ -32,12 +32,15 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     </form>
                     <div class="head_table">
                         <span class="number">№</span>
-                        <span class="count">Пн</span>
-                        <span class="count">Вт</span>
-                        <span class="count">Ср</span>
-                        <span class="count">Чт</span>
-                        <span class="count">Пт</span>
-                        <span class="count">Сб</span>
+                        <?php for ($i = 0; $i < 6; $i++): ?>
+
+                        <span class="timetable_block">
+                            <span><?=$day_of_week[$i]?></span>
+                            <span><?=$week[$i]?></span>
+                        </span>
+
+                        <?php endfor; ?>
+
                     </div>
                     <div class="table">
                         <?php for ($i = 1; $i <= 6; $i++): ?>
@@ -48,12 +51,22 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                 ?>
                                 <?php foreach (${'lessons'.$i} as $key => $lesson): ?>
                                     <?php while ($lesson['date'] !== ${'this_date'.$i}): ?>
-                                        <span class="count"></span>
+                                        <span class=" timetable_block"></span>
                                         <?php
                                         ${'this_date'.$i} = date('Y-m-d', strtotime(${'this_date'.$i} . '+ 1 day'));
                                         ?>
                                     <?php endwhile; ?>
-                                    <span class="count"><?= $lesson['name'] ?></span>
+                                    <span class=" timetable_block">
+                                        <span style="display: flex; justify-content: space-around">
+                                            <span title="<?= $lesson['name'] ?>" class="perenos"><?= $lesson['name'] ?></span>
+                                            <a href="../groups/info_group.php?id_group=<?=$lesson['id_group']?>"><?=$lesson['number']?></a>
+                                        </span>
+                                        <span>
+                                            <?=$lesson['surname']?>
+                                            <?= ' ' . mb_substr($lesson['name_t'], 0, 1) . '.' ?>
+                                            <?= mb_substr($lesson['last_name'], 0, 1) . '.' ?>
+                                        </span>
+                                    </span>
                                     <?php
                                     ${'this_date'.$i} = date('Y-m-d', strtotime(${'this_date'.$i} . '+ 1 day'));
                                     ?>

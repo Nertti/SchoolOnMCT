@@ -17,20 +17,33 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
             <div class="admin_pages">
                 <div class="admin_table">
                     <div class="title">Расписание на текущую неделю</div>
-                    <form action="" method="post" class="search_menu">
-                        <label class="label_line">
-                            <span>Группа:</span>
-                            <select name="id_group" required>
-                                <option value="" selected>'Выбрать'</option>
-                                <?php foreach ($groups as $key => $group): ?>
-                                    <option value="<?= $group['id_group']; ?>"><?= $group['number']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </label>
-                        <button type="submit" value="selectlessons" name="find_timetable">Показать</button>
-<!--                        <button type="submit" value="selectlessons" name="reset">Сбросить</button>-->
-                    <a class="right bold_text" href="index_next.php">Следующая неделя</a>
-                    </form>
+                    <div class="search_menu">
+                        <form class="search_menu" method="post">
+                            <label class="label_line">
+                                <span>Группа:</span>
+                                <select name="id_group" required>
+                                    <option value="" selected>'Выбрать'</option>
+                                    <?php foreach ($groups as $key => $group): ?>
+                                        <option value="<?= $group['id_group']; ?>"><?= $group['number']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
+                            <button type="submit" value="this" name="find_timetable_group">Показать</button>
+                        </form>
+                        <form class="search_menu" method="post">
+                            <label class="label_line">
+                                <span>Преподаватель:</span>
+                                <select name="id_teacher" required>
+                                    <option value="" selected>'Выбрать'</option>
+                                    <?php foreach ($teachers as $key => $teacher): ?>
+                                        <option value="<?= $teacher['id_teacher']; ?>"><?= $teacher['surname']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </label>
+                            <button type="submit" value="this" name="find_timetable_teacher">Показать</button>
+                        </form>
+                        <a class="right bold_text" href="index_next.php">Следующая неделя</a>
+                    </div>
                     <div class="head_table">
                         <span class="number">№</span>
                         <?php for ($i = 0; $i < 6; $i++): ?>

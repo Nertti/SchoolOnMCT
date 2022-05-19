@@ -102,70 +102,51 @@ $next_week = [];
 foreach( $next_period as $date) {
     $next_week[] = $date->format('d.m');
 }
-$lessons1 = selectOrder('selectlessons', 'date', [
-    1 => 'name_l',
-    date('Y-m-d', strtotime('monday this week')) => 'date',
-    date('Y-m-d', strtotime('saturday this week')) => 'date'
-]);
-$lessons2 = selectOrder('selectlessons', 'date', [
-    2 => 'name_l',
-    date('Y-m-d', strtotime('monday this week')) => 'date',
-    date('Y-m-d', strtotime('saturday this week')) => 'date'
-]);
-$lessons3 = selectOrder('selectlessons', 'date', [
-    3 => 'name_l',
-    date('Y-m-d', strtotime('monday this week')) => 'date',
-    date('Y-m-d', strtotime('saturday this week')) => 'date'
-]);
-$lessons4 = selectOrder('selectlessons', 'date', [
-    4 => 'name_l',
-    date('Y-m-d', strtotime('monday this week')) => 'date',
-    date('Y-m-d', strtotime('saturday this week')) => 'date'
-]);
-$lessons5 = selectOrder('selectlessons', 'date', [
-    5 => 'name_l',
-    date('Y-m-d', strtotime('monday this week')) => 'date',
-    date('Y-m-d', strtotime('saturday this week')) => 'date'
-]);
-$lessons6 = selectOrder('selectlessons', 'date', [
-    6 => 'name_l',
-    date('Y-m-d', strtotime('monday this week')) => 'date',
-    date('Y-m-d', strtotime('saturday this week')) => 'date'
-]);
-
-$lessons1_next = selectOrder('selectlessons', 'date', [
-    1 => 'name_l',
-    date('Y-m-d', strtotime('monday next week')) => 'date',
-    date('Y-m-d', strtotime('saturday next week')) => 'date'
-]);
-$lessons2_next = selectOrder('selectlessons', 'date', [
-    2 => 'name_l',
-    date('Y-m-d', strtotime('monday next week')) => 'date',
-    date('Y-m-d', strtotime('saturday next week')) => 'date'
-]);
-$lessons3_next = selectOrder('selectlessons', 'date', [
-    3 => 'name_l',
-    date('Y-m-d', strtotime('monday next week')) => 'date',
-    date('Y-m-d', strtotime('saturday next week')) => 'date'
-]);
-$lessons4_next = selectOrder('selectlessons', 'date', [
-    4 => 'name_l',
-    date('Y-m-d', strtotime('monday next week')) => 'date',
-    date('Y-m-d', strtotime('saturday next week')) => 'date'
-]);
-$lessons5_next = selectOrder('selectlessons', 'date', [
-    5 => 'name_l',
-    date('Y-m-d', strtotime('monday next week')) => 'date',
-    date('Y-m-d', strtotime('saturday next week')) => 'date'
-]);
-$lessons6_next = selectOrder('selectlessons', 'date', [
-    6 => 'name_l',
-    date('Y-m-d', strtotime('monday next week')) => 'date',
-    date('Y-m-d', strtotime('saturday next week')) => 'date'
-]);
-if (isset($_POST['find_timetable'])) {
-    $table = $_POST['find_timetable'];
+for ($i = 1; $i <= 6; $i++){
+   ${'lessons'.$i} = selectOrder('selectlessons', 'date', [
+       $i  => 'name_l',
+       date('Y-m-d', strtotime('monday this week')) => 'date',
+       date('Y-m-d', strtotime('saturday this week')) => 'date'
+   ]);
+    ${'lessons'.$i.'_next'} = selectOrder('selectlessons', 'date', [
+        $i => 'name_l',
+        date('Y-m-d', strtotime('monday next week')) => 'date',
+        date('Y-m-d', strtotime('saturday next week')) => 'date'
+    ]);
+}
+if (isset($_POST['find_timetable_group']) && isset($_POST['id_group'])) {
+    $week_time = $_POST['find_timetable'];
     $group = $_POST['id_group'];
 
-
+    for ($i = 1; $i <= 6; $i++){
+        ${'lessons'.$i} = callProc('selectLessonsGroupInWeek', $group . ', "' .
+            date('Y-m-d', strtotime('monday this week')) . '", "' .
+            date('Y-m-d', strtotime('saturday this week')) . '", ' . $i
+        );
+    }
+    for ($i = 1; $i <= 6; $i++){
+        ${'lessons'.$i.'_next'} = callProc('selectLessonsGroupInWeek', $group . ', "' .
+            date('Y-m-d', strtotime('monday next week')) . '", "' .
+            date('Y-m-d', strtotime('saturday next week')) . '", ' . $i
+        );
+    }
 }
+
+if (isset($_POST['find_timetable_teacher']) && isset($_POST['id_teacher'])) {
+    $week_time = $_POST['find_timetable'];
+    $teacher = $_POST['id_teacher'];
+
+    for ($i = 1; $i <= 6; $i++){
+        ${'lessons'.$i} = callProc('selectLessonsTeachInWeek', $teacher . ', "' .
+            date('Y-m-d', strtotime('monday this week')) . '", "' .
+            date('Y-m-d', strtotime('saturday this week')) . '", ' . $i
+        );
+    }
+    for ($i = 1; $i <= 6; $i++){
+        ${'lessons'.$i.'_next'} = callProc('selectLessonsTeachInWeek', $teacher . ', "' .
+            date('Y-m-d', strtotime('monday next week')) . '", "' .
+            date('Y-m-d', strtotime('saturday next week')) . '", ' . $i
+        );
+    }
+}
+

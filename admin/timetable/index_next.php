@@ -16,7 +16,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
         <div class="">
             <div class="admin_pages">
                 <div class="admin_table">
-                    <div class="title">Расписание на текущую неделю</div>
+                    <div class="title">Расписание на следующую неделю</div>
                     <div class="search_menu">
                         <form class="search_menu" method="post">
                             <label class="label_line">

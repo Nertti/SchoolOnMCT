@@ -83,3 +83,10 @@ select{
     overflow: hidden; /* Обрезаем все, что не помещается в область */
     text-overflow: ellipsis; /* Добавляем многоточие */
 }
+.search_menu .right{
+    margin-right: 0;
+    margin-left: auto;
+}
+.search_menu .bold_text{
+    font-weight: 600;
+}

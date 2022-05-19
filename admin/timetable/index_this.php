@@ -29,6 +29,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         </label>
                         <button type="submit" value="selectlessons" name="find_timetable">Показать</button>
 <!--                        <button type="submit" value="selectlessons" name="reset">Сбросить</button>-->
+                    <a class="right bold_text" href="index_next.php">Следующая неделя</a>
                     </form>
                     <div class="head_table">
                         <span class="number">№</span>

@@ -193,7 +193,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
         $lessons_on_teach = callProc('selectLessonsTeachInWeek',
             $teacher . ', "' .
             date('Y-m-d', strtotime('monday this week', strtotime($date))) . '","' .
-            date('Y-m-d', strtotime('saturday this week', strtotime($date))) . '"');
+            date('Y-m-d', strtotime('saturday this week', strtotime($date))) . '", ' .
+            $timetable
+        );
         $time = callProc('selectTimeTeacher', $teacher);
         $timeOne = $time['0'];
         $this_lesson_group = selectOne('lessons', [

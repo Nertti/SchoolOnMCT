@@ -40,7 +40,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                     </label>
                     <label>
                         <span>Дата:</span>
-                        <input value="<?= $date ?>" type="date" name="date" required>
+                        <input value="" type="date" name="date" required>
                     </label>
                     <label class="label_line">
                         <span>Время занятия:</span>

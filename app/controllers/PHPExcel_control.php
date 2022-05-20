@@ -23,8 +23,11 @@ if (isset($_GET['report_teach'])) {
     $activ_sheet->setCellValueByColumnAndRow(0, 2, 'Фамилия И.О.');
     $activ_sheet->setCellValueByColumnAndRow(1, 2, 'Кол-во часов');
 
-
-    $teachers = selectALL('selectteachers');
+    $today = new DateTime('now');
+    $month = $today->modify('-1 month')->format('F');
+    $teachers = callProc('proc_teachers',
+        '"' . date('Y-m-d', strtotime("first day of $month")) . '", "' .
+        date('Y-m-d', strtotime("last day of $month")) . '"');
     $count = 3;
     foreach ($teachers as $key => $teacher) {
         $activ_sheet->setCellValue("A$count", $teacher['surname'] . ' ' . $teacher['name'] . ' ' . $teacher['last_name']);
@@ -32,10 +35,30 @@ if (isset($_GET['report_teach'])) {
         $count++;
     }
 
-    $filename = 'report teachers.xlsx';
+    $filename = 'report.xlsx';
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExel, 'Excel2007');
     if (file_exists($filename)) {
         unlink($filename);
     }
     $objWriter->save($filename);
+    function file_force_download($filename) {
+        if (file_exists($filename)) {
+            if (ob_get_level()) {
+                ob_end_clean();
+            }
+            // заставляем браузер показать окно сохранения файла
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=' . basename($filename));
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($filename));
+            // читаем файл и отправляем его пользователю
+            readfile($filename);
+            exit;
+        }
+    }
+    file_force_download($filename);
 }

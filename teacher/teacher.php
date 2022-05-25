@@ -25,13 +25,6 @@ include SITE_ROOT . '/app/include/redirectTeacher.php';
                 </div>
             </div>
         </div>
-<!--        <div style="visibility: hidden" class="user_img">-->
-<!--            <a href="#" class="edit_img">Изменить</a>-->
-<!--        </div>-->
-<!--        <div class="user_name">-->
-<!--            <span class="title">--><?php //echo $_SESSION['surname'];?><!-- --><?php //echo $_SESSION['name'];?><!--</span>-->
-<!--        </div>-->
-
         <div class="user dark">
             <div class="timetable_user">
                 <div class="admin_pages max">
@@ -39,10 +32,10 @@ include SITE_ROOT . '/app/include/redirectTeacher.php';
                         <div class="admin">
                             <div class="admin_info">
                                 <div class="title_info_admin"><span>Общая информация</span><span><a href="<?php echo BASE_URL ?>logout.php">Выйти</a></span></div>
-                                <div><span>Логин: <?php echo $_SESSION['login'];?> </span><span><?php echo $_SESSION['surname'];?> <?php echo $_SESSION['name'];?></span></div>
+                                <div><span>Логин: <?php echo $_SESSION['login'];?> </span><span><?php echo $_SESSION['surname'];?> <?php echo $_SESSION['name'];?> <?php echo $_SESSION['last_name'];?></span></div>
                             </div>
                         </div>
-                        <div class="title">Расписание</div>
+                        <div class="title"><span>Расписание</span><span><a href="visits/index.php">Отметить присутствующих</a></span></div>
                         <div class="head_table">
                             <span class="number">№</span>
                             <?php for ($i = 0; $i < 6; $i++): ?>
@@ -72,7 +65,7 @@ include SITE_ROOT . '/app/include/redirectTeacher.php';
                                         <span class=" timetable_block">
                                         <span style="display: flex; justify-content: space-around">
                                             <span title="<?= $lesson['name'] ?>" class="perenos"><?= $lesson['name'] ?></span>
-                                            <a href="../groups/info_group.php?id_group=<?=$lesson['id_group']?>"><?=$lesson['number']?></a>
+                                            <a href="?id_group=<?=$lesson['id_group']?>"><?=$lesson['number']?></a>
                                         </span>
                                         <span>
                                             <?=$lesson['surname']?>

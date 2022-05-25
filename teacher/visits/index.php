@@ -1,6 +1,6 @@
 <?php
 include '../../path.php';
-include SITE_ROOT . '/app/include/redirectAdmin.php';
+include SITE_ROOT . '/app/include/redirectTeacher.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,13 +15,10 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
     <main class="main">
         <div class="container">
             <div class="admin_pages">
-                <div class="admin_panel">
-                    <?php include SITE_ROOT . '/admin/include-admin/admin_panel.php' ?>
-                </div>
                 <div class="admin_table">
-                    <?php include SITE_ROOT . '/admin/include-admin/nav_admin.php' ?>
-                    <div class="title_menu">
-                        <?php include SITE_ROOT . '/admin/include-admin/admin_panel.php' ?>
+                    <div class="admin_menu">
+                        <a href="../teacher.php?timetable_teacher">Назад</a>
+                        <a href="<?php echo BASE_URL ?>logout.php">Выйти</a>
                     </div>
                     <div class="title">Уроки сегодня (<?=date('d.m')?>)</div>
                     <div class="head_table">

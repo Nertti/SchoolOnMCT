@@ -12,7 +12,7 @@ include SITE_ROOT . '/app/include/redirectUser.php';
 <body>
 <div class="wrapper">
 
-    <?php include SITE_ROOT . '/app/include/header.php'?>
+    <?php include SITE_ROOT . '/app/include/header.php' ?>
     <main class="main">
         <div style="background-image: url('../img/bg_2.jpg');" class="img_first second">
             <div class="cover second"></div>
@@ -25,17 +25,21 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                 </div>
             </div>
         </div>
-        <div class="user_img">
+        <div style="visibility: hidden" class="user_img">
             <a href="#" class="edit_img">Изменить</a>
         </div>
         <div class="user_name">
-            <span class="title"><?php echo $_SESSION['surname'];?> <?php echo $_SESSION['name'];?></span>
+            <span class="title"><?php echo $_SESSION['surname']; ?><?php echo $_SESSION['name']; ?></span>
         </div>
         <div class="container">
             <div class="user">
                 <div class="title">
                     <span>Общая информация</span>
-                    <span><a class="popup-link" href="#popup_edit_info">Изменить</a><a href="<?php echo BASE_URL ?>logout.php">Выйти</a></span></div>
+                    <span>
+                        <a style="visibility: hidden" class="popup-link" href="#popup_edit_info">Изменить</a>
+                        <a href="<?php echo BASE_URL ?>logout.php">Выйти</a>
+                    </span>
+                </div>
                 <div class="general_info_user">
                     <div class="info_block">
                         <div class="label">Почта</div>
@@ -45,7 +49,7 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                         <?php if (iconv_strlen($_SESSION['mail']) == 0): ?>
                             <div class="label valueNull">Отсутствует</div>
                         <?php else: ?>
-                            <div class="label"><?= $_SESSION['mail'];?></div>
+                            <div class="label"><?= $_SESSION['mail']; ?></div>
                         <?php endif; ?>
 
                         <?php if (count(callProc("GroupOnStud", $_SESSION['id_student'])) == 0): ?>
@@ -53,7 +57,8 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                         <?php else: ?>
                             <?php foreach (callProc("GroupOnStud", $_SESSION['id_student']) as $key => $group): ?>
                                 <div class="label">
-                                    <a class="label" href="info_group.php?id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>"><?= $group['number']; ?></a>
+                                    <a class="label"
+                                       href="info_group.php?id_group=<?= $group['id_group']; ?>&number=<?= $group['number']; ?>"><?= $group['number']; ?></a>
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
@@ -65,15 +70,15 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                     </div>
                     <div class="result_block">
                         <div class="label">
-                            <?php echo $_SESSION['login'];?>
+                            <?php echo $_SESSION['login']; ?>
                         </div>
                         <?php if (iconv_strlen($_SESSION['phone']) == 0): ?>
                             <div class="label valueNull">Отсутствует</div>
                         <?php else: ?>
-                            <div class="label"><?= $_SESSION['phone'];?></div>
+                            <div class="label"><?= $_SESSION['phone']; ?></div>
                         <?php endif; ?>
                         <div class="label valueNull">
-                            <?php echo $_SESSION['balance'];?> BYN
+                            <?php echo $_SESSION['balance']; ?> BYN
                         </div>
                     </div>
                 </div>

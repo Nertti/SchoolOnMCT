@@ -22,7 +22,7 @@
                             <?php elseif (isset($_SESSION['id_student'])): ?>
                                 <a href="<?php echo BASE_URL ?>user/user.php">Личный кабинет</a>
                             <?php elseif (isset($_SESSION['id_teacher'])): ?>
-                                <a href="<?php echo BASE_URL ?>teacher/teacher.php">Личный кабинет</a>
+                                <a href="<?php echo BASE_URL ?>teacher/teacher.php?timetable_teacher">Личный кабинет</a>
                             <?php else: ?>
                                 <a class="popup-link" href="#popup_log">Войти</a>
                             <?php endif; ?>

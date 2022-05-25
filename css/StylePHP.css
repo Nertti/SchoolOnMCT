@@ -90,3 +90,9 @@ select{
 .search_menu .bold_text{
     font-weight: 600;
 }
+.dark{
+    color: #4c4c4c;
+}
+.max{
+    max-height: 100%;
+}

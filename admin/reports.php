@@ -31,7 +31,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="admin_panel">
                     <a class="menu_block" href="?report_teach">Занятость преподавателей за предыдущий месяц</a>
-                    <a class="menu_block" href="<?php echo BASE_URL ?>">Статистика посещений занятий учащимися</a>
+                    <a class="menu_block" href="?report_stud">Статистика посещений занятий учащимися</a>
                 </div>
             </div>
         </div>

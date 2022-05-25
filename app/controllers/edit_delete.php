@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['del_id'])) {
         $id = 'id_accounting = ' . $_GET['del_id'];
     }
     deleteRow($table, $id);
-    header('location: ' . 'index_this.php');
+    header('location: ' . 'index.php');
 }
 
 if (isset($_GET['id_edit'])) {
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                     'phone' => $phone,
                 ];
                 updateRow('students', $id, $post);
-                header('location: ' . 'index_this.php');
+                header('location: ' . 'index.php');
             }
         }
 
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
 
                 ];
                 updateRow('teachers', $id, $post);
-                header('location: ' . 'index_this.php');
+                header('location: ' . 'index.php');
             }
         }
     }
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                     'price' => $price,
                 ];
                 updateRow('courses', $id, $post);
-                header('location: ' . 'index_this.php');
+                header('location: ' . 'index.php');
             }
         }
     }
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                 'number' => $number,
             ];
             updateRow('groups', $id, $post);
-            header('location: ' . 'index_this.php');
+            header('location: ' . 'index.php');
         }
     }
 
@@ -203,4 +203,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['add_id_student'])) {
         $id = insertRow('accounting', $post);
         header('Location: editStudentInGroup.php?&id_group=' . $_GET['id_group']);
     }
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_student'])) {
+    $today = date('Y-m-d');
+    $post = [
+        'id_student' => $_GET['note_student'],
+        'id_lesson' => $_GET['id_lesson'],
+        'date' => $today,
+    ];
+    $id = insertRow('visit', $post);
+    header('Location: note.php?id_lesson= ' . $_GET['id_lesson'] . '&id_group=' . $_GET['id_group']);
+}
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_student_del'])) {
+    $visit = selectOne('visit', ['id_lesson' => $_GET['id_lesson'], 'id_student' => $_GET['note_student_del']]);
+    $id = 'id_visit = ' . $visit['id_visit'];
+
+    deleteRow('visit', $id);
+    header('Location: note.php?id_lesson= ' . $_GET['id_lesson'] . '&id_group=' . $_GET['id_group']);
 }

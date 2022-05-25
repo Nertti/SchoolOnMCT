@@ -7,6 +7,7 @@ $courses = selectALL('courses');
 $groups = selectALL('groups');
 //$lessons = selectALL('selectlessons');
 $lessons = selectOrder('selectlessons', 'date, name_l');
+$lessonsVisits = selectOrder('selectlessons', 'date, name_l', [date("Y-m-d") => 'date']);
 $timetables = selectALL('timetable');
 //$lessons = selectOrder('selectlessons', 'date, time_start');
 //$lessons = selectOrder('selectlessons', 'date, time_start', ['date' => date("Y-m-d"),]);
@@ -135,6 +136,23 @@ if (isset($_POST['find_timetable_group']) && isset($_POST['id_group'])) {
 if (isset($_POST['find_timetable_teacher']) && isset($_POST['id_teacher'])) {
     $week_time = $_POST['find_timetable'];
     $teacher = $_POST['id_teacher'];
+
+    for ($i = 1; $i <= 6; $i++){
+        ${'lessons'.$i} = callProc('selectLessonsTeachInWeek', $teacher . ', "' .
+            date('Y-m-d', strtotime('monday this week')) . '", "' .
+            date('Y-m-d', strtotime('saturday this week')) . '", ' . $i
+        );
+    }
+    for ($i = 1; $i <= 6; $i++){
+        ${'lessons'.$i.'_next'} = callProc('selectLessonsTeachInWeek', $teacher . ', "' .
+            date('Y-m-d', strtotime('monday next week')) . '", "' .
+            date('Y-m-d', strtotime('saturday next week')) . '", ' . $i
+        );
+    }
+}
+
+if (isset($_GET['timetable_teacher']) && isset($_SESSION['id_teacher'])) {
+    $teacher = $_SESSION['id_teacher'];
 
     for ($i = 1; $i <= 6; $i++){
         ${'lessons'.$i} = callProc('selectLessonsTeachInWeek', $teacher . ', "' .

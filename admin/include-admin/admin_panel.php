@@ -4,7 +4,7 @@
 <a class="menu_block" href="<?php echo BASE_URL ?>admin/groups/index.php">Группы</a>
 <a class="menu_block" href="<?php echo BASE_URL ?>admin/lessons/index.php">Уроки</a>
 <a class="menu_block" href="<?php echo BASE_URL ?>admin/timetable/index_this.php">Расписание</a>
-<a class="menu_block" href="<?php echo BASE_URL ?>">Посещения</a>
+<a class="menu_block" href="<?php echo BASE_URL ?>admin/visits/index.php">Посещения</a>
 <a class="menu_block" href="<?php echo BASE_URL ?>admin/reports.php">Отчёты</a>
 <a class="menu_block" href="<?php echo BASE_URL ?>">Справка</a>
 <!--<a class="menu_block" href="--><?php //echo BASE_URL ?><!--admin/spravka.php">Справка</a>-->

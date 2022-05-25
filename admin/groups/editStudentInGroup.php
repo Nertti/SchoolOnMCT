@@ -23,14 +23,14 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
             <div class="add_stud_in_group">
                 <div class="admin_table">
                     <div class="title">Учащиеся группы</div>
-                    <div class="search_menu">
-                        <label>
-                            Поиск по фамилии:
-                            <input class="search" type="text" name="search">
-                        </label>
-                        <button>Найти</button>
-                        <a href="#">Сбросить</a>
-                    </div>
+<!--                    <div class="search_menu">-->
+<!--                        <label>-->
+<!--                            Поиск по фамилии:-->
+<!--                            <input class="search" type="text" name="search">-->
+<!--                        </label>-->
+<!--                        <button>Найти</button>-->
+<!--                        <a href="#">Сбросить</a>-->
+<!--                    </div>-->
                     <div class="head_table">
                         <span class="number">№</span>
                         <a class="surname" href="#">Фамилия И.О.</a>
@@ -53,14 +53,14 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="admin_table">
                     <div class="title">Остальные учащиеся</div>
-                    <div class="search_menu">
-                        <label>
-                            Поиск по фамилии:
-                            <input class="search" type="text" name="search">
-                        </label>
-                        <button>Найти</button>
-                        <a href="#">Сбросить</a>
-                    </div>
+<!--                    <div class="search_menu">-->
+<!--                        <label>-->
+<!--                            Поиск по фамилии:-->
+<!--                            <input class="search" type="text" name="search">-->
+<!--                        </label>-->
+<!--                        <button>Найти</button>-->
+<!--                        <a href="#">Сбросить</a>-->
+<!--                    </div>-->
                     <div class="head_table">
                         <span class="number">№</span>
                         <a class="surname" href="#">Фамилия И.О.</a>

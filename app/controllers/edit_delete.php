@@ -214,12 +214,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_student'])) {
         'date' => $today,
     ];
     $id = insertRow('visit', $post);
-    header('Location: note.php?id_lesson= ' . $_GET['id_lesson'] . '&id_group=' . $_GET['id_group']);
+    header('Location: note.php?id_lesson=' . $_GET['id_lesson'] . '&id_group=' . $_GET['id_group'] . '&name_l=' . $_GET['name_l']);
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['note_student_del'])) {
     $visit = selectOne('visit', ['id_lesson' => $_GET['id_lesson'], 'id_student' => $_GET['note_student_del']]);
     $id = 'id_visit = ' . $visit['id_visit'];
 
     deleteRow('visit', $id);
-    header('Location: note.php?id_lesson= ' . $_GET['id_lesson'] . '&id_group=' . $_GET['id_group']);
+    header('Location: note.php?id_lesson=' . $_GET['id_lesson'] . '&id_group=' . $_GET['id_group'] . '&name_l=' . $_GET['name_l']);
 }

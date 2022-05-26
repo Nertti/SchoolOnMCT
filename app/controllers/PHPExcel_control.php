@@ -28,10 +28,24 @@ if (isset($_GET['report_teach'])) {
     $teachers = callProc('proc_teachers',
         '"' . date('Y-m-d', strtotime("first day of $month")) . '", "' .
         date('Y-m-d', strtotime("last day of $month")) . '"');
+    $teachersNULL = selectALL('selectteachers');
+    foreach ($teachersNULL as $key => $teacherNULL) {
+        foreach ($teachers as $key2 => $teacher) {
+            if ($teacherNULL['id_teacher'] == $teacher['id_teacher']) {
+                unset($teachersNULL[$key]);
+                echo $key;
+            }
+        }
+    }
     $count = 3;
     foreach ($teachers as $key => $teacher) {
         $activ_sheet->setCellValue("A$count", $teacher['surname'] . ' ' . $teacher['name'] . ' ' . $teacher['last_name']);
         $activ_sheet->setCellValue("B$count", $teacher['count']);
+        $count++;
+    }
+    foreach ($teachersNULL as $key => $teacherNULL) {
+        $activ_sheet->setCellValue("A$count", $teacherNULL['surname'] . ' ' . $teacherNULL['name'] . ' ' . $teacherNULL['last_name']);
+        $activ_sheet->setCellValue("B$count", 0);
         $count++;
     }
 
@@ -41,7 +55,8 @@ if (isset($_GET['report_teach'])) {
         unlink($filename);
     }
     $objWriter->save($filename);
-    function file_force_download($filename) {
+    function file_force_download($filename)
+    {
         if (file_exists($filename)) {
             if (ob_get_level()) {
                 ob_end_clean();
@@ -60,6 +75,7 @@ if (isset($_GET['report_teach'])) {
             exit;
         }
     }
+
     file_force_download($filename);
 }
 if (isset($_GET['report_stud'])) {
@@ -91,9 +107,24 @@ if (isset($_GET['report_stud'])) {
         '"' . date('Y-m-d', strtotime("first day of $month")) . '", "' .
         date('Y-m-d', strtotime("last day of $month")) . '"');
     $count = 3;
+    $studentsNULL = selectALL('selectstudents');
+    foreach ($studentsNULL as $key => $studentNULL) {
+        foreach ($students as $key2 => $student) {
+            if ($studentNULL['id_student'] == $student['id_student']) {
+                unset($studentsNULL[$key]);
+                echo $key;
+            }
+        }
+    }
+
     foreach ($students as $key => $student) {
         $activ_sheet->setCellValue("A$count", $student['surname'] . ' ' . $student['name'] . ' ' . $student['last_name']);
         $activ_sheet->setCellValue("B$count", $student['count']);
+        $count++;
+    }
+    foreach ($studentsNULL as $key => $studentsNULL) {
+        $activ_sheet->setCellValue("A$count", $studentsNULL['surname'] . ' ' . $studentsNULL['name'] . ' ' . $studentsNULL['last_name']);
+        $activ_sheet->setCellValue("B$count", 0);
         $count++;
     }
 
@@ -103,7 +134,8 @@ if (isset($_GET['report_stud'])) {
         unlink($filename);
     }
     $objWriter->save($filename);
-    function file_force_download($filename) {
+    function file_force_download($filename)
+    {
         if (file_exists($filename)) {
             if (ob_get_level()) {
                 ob_end_clean();
@@ -122,5 +154,6 @@ if (isset($_GET['report_stud'])) {
             exit;
         }
     }
+
     file_force_download($filename);
 }

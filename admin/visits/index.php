@@ -38,7 +38,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                                 <span class="surname"><?php echo $lesson['name']?></span>
 
                                 <span class="control" >
-                                <a class="add" href="note.php?id_group=<?= $lesson['id_group'] ?>&id_lesson=<?= $lesson['id_lesson'] ?>">Отметить учащихся</a>
+                                <a class="add" href="note.php?id_group=<?= $lesson['id_group'] ?>&id_lesson=<?= $lesson['id_lesson'] ?>&name_l=<?= $lesson['name_l'] ?>">Отметить учащихся</a>
                             </span>
                             </div>
                         <?php endforeach; ?>

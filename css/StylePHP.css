@@ -78,8 +78,7 @@ select{
 .perenos{
     height: 35px;
     width: 150px;
-    /*word-wrap: break-word; !* Перенос слов *!*/
-    /*word-break: break-all;*/
+
     overflow: hidden; /* Обрезаем все, что не помещается в область */
     text-overflow: ellipsis; /* Добавляем многоточие */
 }

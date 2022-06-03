@@ -29,7 +29,7 @@ include SITE_ROOT . '/app/include/redirectUser.php';
             <a href="#" class="edit_img">Изменить</a>
         </div>
         <div class="user_name">
-            <span class="title"><?php echo $_SESSION['surname']; ?><?php echo $_SESSION['name']; ?></span>
+            <span class="title"><?php echo $_SESSION['surname']; ?> <?php echo $_SESSION['name']; ?></span>
         </div>
         <div class="container">
             <div class="user">
@@ -90,49 +90,6 @@ include SITE_ROOT . '/app/include/redirectUser.php';
             </div>
         </div>
     </main>
-    <div id="popup_edit_info" class="popup">
-        <div class="popup_body">
-            <div class="popup_content">
-                <a href="#" class="popup_close"></a>
-                <div class="edit_user_info">
-                    <!--                    <div class="title_edit_info">-->
-                    <!--                        Настройки-->
-                    <!--                    </div>-->
-                    <div class="body_edit_info">
-                        <form method="post" action="">
-                            <label>
-                                Имя:
-                                <input type="text" name="name">
-                            </label>
-                            <label>
-                                Фамилия:
-                                <input type="text" name="surname">
-                            </label>
-                            <label>
-                                Отчество:
-                                <input type="text" name="last_name">
-                            </label>
-                            <label>
-                                Логин:
-                                <input type="text" name="surname">
-                            </label>
-                            <label>
-                                Почта:
-                                <input type="text" name="surname">
-                            </label>
-                            <label>
-                                Телефон:
-                                <input type="text" name="surname">
-                            </label>
-                            <button type="submit" name="btn-save-user" class="button">
-                                Сохранить
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <?php include SITE_ROOT . '/app/include/footer.php' ?>
 </div>
 </body>

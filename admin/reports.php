@@ -31,11 +31,38 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="admin_panel">
                     <a class="menu_block" href="?report_teach">Занятость преподавателей за предыдущий месяц</a>
-                    <a class="menu_block" href="?report_stud">Статистика посещений занятий учащимися</a>
+                    <a class="menu_block popup-link"  href="#popup_edit_info">Статистика посещений занятий учащимися</a>
+<!--                    <a class="menu_block" href="?report_stud">Статистика посещений занятий учащимися</a>-->
                 </div>
             </div>
         </div>
     </main>
+    <div id="popup_edit_info" class="popup">
+        <div class="popup_body">
+            <div class="popup_content">
+                <a href="#" class="popup_close"></a>
+                <div class="edit_user_info">
+                    <div class="title_edit_info">
+                        Выберите диапазон дат
+                    </div>
+                    <div class="body_edit_info">
+                        <form method="post" action="">
+                            <label>
+                                <input type="date" name="date_start">
+                            </label>
+                            <label>
+                                <input type="date" name="date_end">
+                            </label>
+                            <button type="submit" name="report_build" class="button">
+                                Создать отчёт
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <?php include SITE_ROOT . '/app/include/footer.php' ?>
 </div>
 </body>

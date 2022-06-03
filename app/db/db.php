@@ -195,9 +195,6 @@ function callProc ($nameProc, $param)
 {
     global $pdo;
     $sql = "CALL `$nameProc` ($param)";
-
-//    tt($_POST);
-//    tt($sql);
     $query = $pdo->prepare($sql);
     $query->execute();
 

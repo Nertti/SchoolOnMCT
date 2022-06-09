@@ -1,8 +1,0 @@
-AddDefaultCharset utf-8
-
-Options -Indexes
-Redirect /SchoolProject/path.php /SchoolProject/Redirect.php
-
-#Order Deny,Allow
-#Deny from all
-#Allow

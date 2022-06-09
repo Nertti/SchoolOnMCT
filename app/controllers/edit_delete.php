@@ -148,9 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
             $error = 'Слишком большая цена';
         } else {
             $check_name = selectOne($table, ['name' => $name]);
-            if ($check_name['id_course'] !== $_GET['id_edit']) {
-                $error = 'Такое название уже существует';
-            } else {
+            if ($check_name['id_course'] === $_GET['id_edit'] or $check_name == '') {
                 $post = [
                     'name' => $name,
                     'description' => $description,
@@ -158,6 +156,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
                 ];
                 updateRow('courses', $id, $post);
                 header('location: ' . 'index.php');
+            } else {
+                $error = 'Такое название уже существует';
             }
         }
     }

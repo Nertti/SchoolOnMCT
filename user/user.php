@@ -36,7 +36,7 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                 <div class="title">
                     <span>Общая информация</span>
                     <span>
-                        <a style="visibility: hidden" class="popup-link" href="#popup_edit_info">Изменить</a>
+                        <a href="timetable.php?timetable_user">Расписание</a>
                         <a href="<?php echo BASE_URL ?>logout.php">Выйти</a>
                     </span>
                 </div>
@@ -82,11 +82,11 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                         </div>
                     </div>
                 </div>
-                <div class="title">Расписание</div>
-                <div class="timetable_user">
-                    <!--                    <span class="msg">Вы не записаны ни на один курс</span>-->
-                    <span class="msg">Ещё в разработке :)</span>
-                </div>
+
+<!--                <div class="timetable_user">-->
+<!--                                        <span class="msg">Вы не записаны ни на один курс</span>-->
+<!--                    <span class="msg">Ещё в разработке :)</span>-->
+<!--                </div>-->
             </div>
         </div>
     </main>

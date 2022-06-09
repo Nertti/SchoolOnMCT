@@ -16,7 +16,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
     <main class="main">
         <div class="container">
             <form class="admin_pages_create" action="" method="post">
-                <div class="title">Создание нового занятия</div>
+                <div class="title">Создание нового урока</div>
                 <div class="error_create"><?= $error ?></div>
 
                 <div class="create-for-admin">

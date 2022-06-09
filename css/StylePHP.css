@@ -95,3 +95,6 @@ select{
 .max{
     max-height: 100%;
 }
+.table{
+    height: 450px;
+}

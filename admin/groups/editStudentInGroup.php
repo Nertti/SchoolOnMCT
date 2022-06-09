@@ -37,7 +37,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <span class="control">Управление</span>
                     </div>
                     <div class="table">
-                        <?php foreach ($stud_in_group as $key => $student): ?>
+                        <?php foreach ($stud_in_group_info as $key => $student): ?>
                             <div class="row_table">
                                 <span class="number"><?= $key + 1; ?></span>
                                 <span class="surname"><?php echo $student['surname'] . ' ';

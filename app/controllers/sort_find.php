@@ -134,7 +134,6 @@ if (isset($_POST['find_timetable_group']) && isset($_POST['id_group'])) {
 }
 
 if (isset($_POST['find_timetable_teacher']) && isset($_POST['id_teacher'])) {
-    $week_time = $_POST['find_timetable'];
     $teacher = $_POST['id_teacher'];
 
     for ($i = 1; $i <= 6; $i++){
@@ -162,6 +161,23 @@ if (isset($_GET['timetable_teacher']) && isset($_SESSION['id_teacher'])) {
     }
     for ($i = 1; $i <= 6; $i++){
         ${'lessons'.$i.'_next'} = callProc('selectLessonsTeachInWeek', $teacher . ', "' .
+            date('Y-m-d', strtotime('monday next week')) . '", "' .
+            date('Y-m-d', strtotime('saturday next week')) . '", ' . $i
+        );
+    }
+}
+
+if (isset($_GET['timetable_user']) && isset($_SESSION['id_student'])) {
+    $groups = callProc("GroupOnStud", $_SESSION['id_student']);
+    $group = $groups[0]['id_group'];
+    for ($i = 1; $i <= 6; $i++){
+        ${'lessons'.$i} = callProc('selectLessonsGroupInWeek', $group . ', "' .
+            date('Y-m-d', strtotime('monday this week')) . '", "' .
+            date('Y-m-d', strtotime('saturday this week')) . '", ' . $i
+        );
+    }
+    for ($i = 1; $i <= 6; $i++){
+        ${'lessons'.$i.'_next'} = callProc('selectLessonsGroupInWeek', $group . ', "' .
             date('Y-m-d', strtotime('monday next week')) . '", "' .
             date('Y-m-d', strtotime('saturday next week')) . '", ' . $i
         );

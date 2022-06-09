@@ -18,7 +18,7 @@ $('.login-btn').click(function (e) {
                 if (data.user === 'admin') {
                     document.location.href = 'admin/admin.php';
                 } else if (data.user === 'student') {
-                    document.location.href = 'user/user.php';
+                    document.location.href = 'user/user.php?timetable_user';
                 } else if (data.user === 'teacher') {
                     document.location.href = 'teacher/teacher.php?timetable_teacher';
                 }

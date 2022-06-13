@@ -8,6 +8,8 @@ $groups = selectALL('groups');
 //$lessons = selectALL('selectlessons');
 $lessons = selectOrder('selectlessons', 'date, name_l');
 $lessonsVisits = selectOrder('selectlessons', 'date, name_l', [date("Y-m-d") => 'date']);
+$lessons_les = selectOrder_lessons('selectlessons', 'date, name_l', [date('Y-m-d', strtotime('next day')) => 'date']);
+//$lessons_les = selectOrder_lessons('selectlessons', 'date, name_l', [date("Y-m-d") => 'date']);
 $timetables = selectALL('timetable');
 //$lessons = selectOrder('selectlessons', 'date, time_start');
 //$lessons = selectOrder('selectlessons', 'date, time_start', ['date' => date("Y-m-d"),]);

@@ -31,6 +31,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 </div>
                 <div class="admin_panel">
                     <a class="menu_block" href="?report_teach">Занятость преподавателей за предыдущий месяц</a>
+<!--                    <a class="menu_block"  href="?report_stud">Статистика посещений занятий учащимися</a>-->
                     <a class="menu_block popup-link"  href="#popup_edit_info">Статистика посещений занятий учащимися</a>
 <!--                    <a class="menu_block" href="?report_stud">Статистика посещений занятий учащимися</a>-->
                 </div>
@@ -53,7 +54,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                             <label>
                                 <input type="date" name="date_end">
                             </label>
-                            <button type="submit" name="report_build" class="button">
+                            <button type="submit" name="report_stud_date" class="button">
                                 Создать отчёт
                             </button>
                         </form>

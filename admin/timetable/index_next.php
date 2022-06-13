@@ -42,6 +42,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                             </label>
                             <button type="submit" value="selectlessons" name="find_timetable">Показать</button>
                         </form>
+                        <a class="right bold_text" href="../lessons/index.php">Уроки</a>
                         <a class="right bold_text" href="index_this.php">Текущая неделя</a>
                     </div>
                     <div class="head_table">

@@ -41,7 +41,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                         <span class="control price">Управление</span>
                     </div>
                     <div class="table">
-                        <?php foreach ($lessons as $key => $lesson): ?>
+                        <?php foreach ($lessons_les as $key => $lesson): ?>
                             <div class="row_table">
 <!--                                <span class="number">--><?//= $key + 1; ?><!--</span>-->
                                 <span class="date"><?php

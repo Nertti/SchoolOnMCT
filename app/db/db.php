@@ -104,6 +104,36 @@ function selectOrder($table, $sort_sql, $params = [])
         }
     }
     $sql = $sql . " ORDER BY $sort_sql";
+//    tt($sql);
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    checkErrors($query);
+
+    return $query->fetchAll();
+}
+
+function selectOrder_lessons($table, $sort_sql, $params = [])
+{
+    global $pdo;
+
+    $sql = "select * from `$table`";
+
+    if (!empty($params)) {
+        $i = 0;
+        foreach ($params as $key => $value) {
+            //массив ассоциативный наоборот
+            $value = "`" . $value . "`";
+            $key = "'" . $key . "'";
+            if ($i === 0) {
+                $sql = $sql . " WHERE $value >= $key";
+            } else {
+                $sql = $sql . " AND $value <= $key";
+            }
+            $i++;
+        }
+    }
+    $sql = $sql . " ORDER BY $sort_sql";
+//    tt($sql);
     $query = $pdo->prepare($sql);
     $query->execute();
     checkErrors($query);

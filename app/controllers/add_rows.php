@@ -222,6 +222,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $error = 'Урок у этого учителя в это время уже есть';
         } elseif (!$this_lesson == '') {
             $error = 'Урок в это время уже есть';
+        }  elseif ($date <= date('Y-m-d')) {
+            $error = 'Нельзя назначить урок в предыдущую дату';
         } else {
             $post = [
                 'date' => $date,
@@ -238,5 +240,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-back'])) {
-    header('location: ' . 'index_this.php');
+    header('location: ' . 'index.php');
 }

@@ -16,9 +16,9 @@ include SITE_ROOT . '/app/include/redirectUser.php';
     <main class="main">
         <div class="container">
             <div class="admin_pages">
-                <div class="admin_panel">
-                    <span>a<?= $_GET['id_group']?></span>
-                </div>
+<!--                <div class="admin_panel">-->
+<!--                    <span>a--><?//= $_GET['id_group']?><!--</span>-->
+<!--                </div>-->
                 <div class="admin_table">
                     <div class="title_menu">
                     </div>

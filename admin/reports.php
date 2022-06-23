@@ -29,6 +29,7 @@ include SITE_ROOT . '/app/include/redirectAdmin.php';
                 <div class="admin_info">
                     <div class="title_info_admin"><span>Создать отчёт</span><span><a href="<?php echo BASE_URL ?>logout.php">Выйти</a></span></div>
                 </div>
+                <span class="error_msg"><?php echo $error;?></span>
                 <div class="admin_panel">
                     <a class="menu_block" href="?report_teach">Занятость преподавателей за предыдущий месяц</a>
 <!--                    <a class="menu_block"  href="?report_stud">Статистика посещений занятий учащимися</a>-->

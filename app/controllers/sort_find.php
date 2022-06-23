@@ -171,7 +171,11 @@ if (isset($_GET['timetable_teacher']) && isset($_SESSION['id_teacher'])) {
 
 if (isset($_GET['timetable_user']) && isset($_SESSION['id_student'])) {
     $groups = callProc("GroupOnStud", $_SESSION['id_student']);
-    $group = $groups[0]['id_group'];
+   if(isset($groups[0])){
+       $group = $groups[0]['id_group'];
+   } else{
+       $group = 0;
+   }
     for ($i = 1; $i <= 6; $i++){
         ${'lessons'.$i} = callProc('selectLessonsGroupInWeek', $group . ', "' .
             date('Y-m-d', strtotime('monday this week')) . '", "' .

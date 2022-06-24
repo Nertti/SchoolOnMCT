@@ -1,5 +1,5 @@
 <?php
-$error = '';
+$error1 = '';
 if (isset($_GET['report_teach'])) {
 
     $objPHPExel = new PHPExcel();
@@ -161,9 +161,9 @@ if (isset($_POST['report_stud_date'])) {
     $date_start = trim($_POST['date_start']);
     $date_end = trim($_POST['date_end']);
    if(strtotime($date_start) > strtotime($date_end)){
-       $error = 'Введите корректный диапазон';
+       $error1 = 'Введите корректный диапазон';
    } else{
-       $error = 'sddsd';
+       $error1 = ' ';
        $objPHPExel = new PHPExcel();
        $objPHPExel->setActiveSheetIndex(0);
        $activ_sheet = $objPHPExel->getActiveSheet();

@@ -112,12 +112,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-update'])) {
             $check_login_student = selectOne('students', ['login' => $login]);
             $check_login_teacher = selectOne('teachers', ['login' => $login]);
             $check_login_admin = selectOne('admins', ['login' => $login]);
-            if ($check_login_student['id_student'] !== $_GET['id_edit'] && !$check_login_student == '') {
+            $check_phone_teacher = selectOne('teachers', ['phone' => $phone]);
+            if ($check_login_student['id_student'] != $_GET['id_edit'] && !$check_login_student == '') {
                 $error = 'Такой пользователь уже существует (учащийся)';
-            } elseif ($check_login_teacher['id_teacher'] !== $_GET['id_edit'] && !$check_login_teacher == '') {
+            } elseif ($check_login_teacher['id_teacher'] != $_GET['id_edit'] && !$check_login_teacher == '') {
                 $error = 'Такой пользователь уже существует (преподаватель)';
-            } elseif ($check_login_admin['id_admin'] !== $_GET['id_edit'] && !$check_login_admin == '') {
+            } elseif ($check_login_admin['id_admin'] != $_GET['id_edit'] && !$check_login_admin == '') {
                 $error = 'Такой пользователь уже существует (админ)';
+            }  elseif ($check_phone_teacher['id_teacher'] != $_GET['id_edit'] && !$check_phone_teacher == '') {
+                $error = 'Такой телефон уже зарегистрирован';
             } else {
                 $post = [
                     'name' => $name,

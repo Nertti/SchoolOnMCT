@@ -18,8 +18,8 @@ include SITE_ROOT . '/app/include/redirectUser.php';
                 <div class="admin_table">
                     <div class="title">Расписание на текущую неделю</div>
                     <div class="search_menu">
-                        <a class=" bold_text" href="user.php?timetable_user">назад</a>
-                        <a class="right bold_text" href="timetable_next.php?timetable_user">Текущая неделя</a>
+                        <a class=" bold_text" href="user.php?timetable_user">Назад</a>
+                        <a class="right bold_text" href="timetable_next.php?timetable_user">Следующая неделя</a>
                     </div>
                     <div class="head_table">
                         <span class="number">№</span>

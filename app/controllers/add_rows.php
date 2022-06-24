@@ -72,12 +72,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btn-add'])) {
             $check_login_student = selectOne('students', ['login' => $login]);
             $check_login_teacher = selectOne('teachers', ['login' => $login]);
             $check_login_admin = selectOne('admins', ['login' => $login]);
+            $check_phone_teacher = selectOne('teachers', ['phone' => $phone]);
             if (!$check_login_student == '') {
                 $error = 'Такой пользователь уже существует (учащийся)';
             } elseif (!$check_login_teacher == '') {
                 $error = 'Такой пользователь уже существует (преподаватель)';
             } elseif (!$check_login_admin == '') {
                 $error = 'Такой пользователь уже существует (админ)';
+            }  elseif (!$check_phone_teacher == '') {
+                $error = 'Такой номер уже зарегистрирован';
             } else {
                 $pass = password_hash($pass, PASSWORD_DEFAULT);
                 $post = [
